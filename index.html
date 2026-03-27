@@ -8,147 +8,60 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f0f2f5;
-            --fg: #1a1a2e;
-            --card: #ffffff;
-            --accent: #2563eb;
-            --accent-dark: #1d4ed8;
-            --border: #d1d5db;
-            --muted: #6b7280;
-            --success: #059669;
-            --danger: #dc2626;
+            --bg: #f0f2f5; --fg: #1a1a2e; --card: #ffffff; --accent: #2563eb; --accent-dark: #1d4ed8;
+            --border: #d1d5db; --muted: #6b7280; --success: #059669; --danger: #dc2626;
         }
-
         * { font-family: 'Source Sans Pro', sans-serif; }
         body { background: var(--bg); color: var(--fg); position: relative; min-height: 100vh; padding-bottom: 40px; }
-
         .display-font { font-family: 'Playfair Display', serif; }
-
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: #e5e7eb; }
         ::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 4px; }
 
         .form-input {
-            width: 100%;
-            padding: 0.45rem 0.7rem;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            background: var(--card);
-            transition: all 0.2s ease;
-            font-size: 0.85rem;
+            width: 100%; padding: 0.45rem 0.7rem; border: 1px solid var(--border); border-radius: 6px;
+            background: var(--card); transition: all 0.2s ease; font-size: 0.85rem;
         }
         .form-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1); }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 0.25rem;
-            font-weight: 600;
-            color: #374151;
-            font-size: 0.8rem;
-        }
+        .form-label { display: block; margin-bottom: 0.25rem; font-weight: 600; color: #374151; font-size: 0.8rem; }
 
         .btn {
-            padding: 0.45rem 0.9rem;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-            font-size: 0.8rem;
+            padding: 0.45rem 0.9rem; border-radius: 6px; font-weight: 600; transition: all 0.2s ease;
+            border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 0.8rem;
         }
-        .btn-primary { background: var(--accent); color: white; }
-        .btn-primary:hover { background: var(--accent-dark); }
-        .btn-success { background: var(--success); color: white; }
-        .btn-success:hover { background: #047857; }
-        .btn-danger { background: var(--danger); color: white; }
+        .btn-primary { background: var(--accent); color: white; } .btn-primary:hover { background: var(--accent-dark); }
+        .btn-success { background: var(--success); color: white; } .btn-success:hover { background: #047857; }
+        .btn-danger { background: var(--danger); color: white; } 
         .btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-        .btn-gray { background: #4b5563; color: white; }
-        .btn-gray:hover { background: #374151; }
-
-        /* Icon Button Specific */
-        .btn-icon {
-            padding: 0.4rem;
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-        }
+        .btn-gray { background: #4b5563; color: white; } .btn-gray:hover { background: #374151; }
+        .btn-icon { padding: 0.4rem; width: 32px; height: 32px; border-radius: 6px; font-size: 0.8rem; }
 
         .form-card {
-            background: var(--card);
-            border-radius: 10px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-            padding: 1rem 1.25rem;
-            margin-bottom: 0.75rem;
-            border: 1px solid #e5e7eb;
+            background: var(--card); border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            padding: 1rem 1.25rem; margin-bottom: 0.75rem; border: 1px solid #e5e7eb;
         }
-
         .section-title {
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.25rem;
-            border-bottom: 2px solid var(--accent);
-            display: inline-block;
+            font-weight: 700; font-size: 0.9rem; color: var(--accent); margin-bottom: 0.75rem;
+            padding-bottom: 0.25rem; border-bottom: 2px solid var(--accent); display: inline-block;
         }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: 500px 1fr; 
-            gap: 1.5rem;
-        }
-        @media (max-width: 1200px) {
-            .main-grid { grid-template-columns: 1fr; }
-        }
+        .main-grid { display: grid; grid-template-columns: 500px 1fr; gap: 1.5rem; }
+        @media (max-width: 1200px) { .main-grid { grid-template-columns: 1fr; } }
 
         .preview-container {
-            background: var(--card);
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            overflow: hidden;
-            border: 1px solid #e5e7eb;
-            position: sticky;
-            top: 1rem;
+            background: var(--card); border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            overflow: hidden; border: 1px solid #e5e7eb; position: sticky; top: 1rem;
         }
         .preview-toolbar {
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            padding: 0.5rem 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); padding: 0.5rem 1rem;
+            display: flex; justify-content: space-between; align-items: center;
         }
         .preview-content {
-            padding: 0.5rem;
-            max-height: calc(100vh - 120px);
-            overflow-y: auto;
-            background: #e5e7eb;
+            padding: 0.5rem; max-height: calc(100vh - 120px); overflow-y: auto; background: #e5e7eb;
         }
 
-        .activity-row {
-            background: #f9fafb;
-            border-radius: 6px;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
-            border: 1px solid #e5e7eb;
-        }
-
-        .time-picker-group {
-            display: flex;
-            align-items: center;
-            gap: 2px;
-        }
-        .time-picker-group select {
-            padding: 0.3rem;
-            font-size: 0.8rem;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-            background: white;
-        }
+        .activity-row { background: #f9fafb; border-radius: 6px; padding: 0.5rem; margin-bottom: 0.5rem; border: 1px solid #e5e7eb; }
+        .time-picker-group { display: flex; align-items: center; gap: 2px; }
+        .time-picker-group select { padding: 0.3rem; font-size: 0.8rem; border: 1px solid #d1d5db; border-radius: 4px; background: white; }
         .time-separator { font-weight: bold; margin: 0 1px; }
 
         .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 0.5rem; }
@@ -156,133 +69,114 @@
         .photo-item img { width: 100%; height: 100%; object-fit: cover; }
         .photo-item .delete-btn { position: absolute; top: 2px; right: 2px; background: rgba(220, 38, 38, 0.9); color: white; border: none; border-radius: 50%; width: 18px; height: 18px; cursor: pointer; font-size: 12px; line-height: 1; opacity: 0; transition: opacity 0.2s; }
         .photo-item:hover .delete-btn { opacity: 1; }
-        
-        .photo-upload-area {
-            border: 1px dashed #d1d5db;
-            border-radius: 6px;
-            padding: 0.75rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: #fafafa;
-        }
+        .photo-upload-area { border: 1px dashed #d1d5db; border-radius: 6px; padding: 0.75rem; text-align: center; cursor: pointer; transition: all 0.2s; background: #fafafa; }
         .photo-upload-area:hover { border-color: var(--accent); background: rgba(37, 99, 235, 0.05); }
 
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-            z-index: 50; display: none; align-items: center; justify-content: center;
-            backdrop-filter: blur(2px);
-        }
-        .modal-content {
-            background: white; border-radius: 12px; width: 95%; max-width: 800px;
-            max-height: 90vh; overflow: hidden; display: flex; flex-direction: column;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 50; display: none; align-items: center; justify-content: center; backdrop-filter: blur(2px); }
+        .modal-content { background: white; border-radius: 12px; width: 95%; max-width: 500px; max-height: 90vh; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
         .modal-header { padding: 1rem; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; }
-        .modal-body { padding: 0; overflow-y: auto; background: #e5e7eb; }
+        .modal-body { padding: 1rem; overflow-y: auto; }
+        .modal-footer { padding: 1rem; border-top: 1px solid #eee; background: #f8f9fa; display: flex; justify-content: end; gap: 0.5rem; }
 
-        /* Updated Table List Styles for Compactness */
-        .table-list { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        .table-list th, .table-list td { 
-            border: 1px solid #e5e7eb; 
-            padding: 6px 8px; /* Reduced padding */
-            text-align: left; 
-            vertical-align: middle;
-        }
-        .table-list th { background: #f8f9fa; font-weight: 600; }
-        .table-list tr:hover { background: #f3f4f6; }
+        /* Table & Scroll Styles */
+        .table-list { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.8rem; }
+        .table-list th, .table-list td { border: 1px solid #e5e7eb; padding: 6px 8px; vertical-align: middle; }
+        .table-list th { background: #f8f9fa; font-weight: 600; text-align: center; }
+        .table-list td { text-align: left; }
         
-        /* Action Icons Container */
-        .action-icons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
+        /* Sticky Header Container */
+        .table-scroll-container {
+            max-height: calc(100vh - 340px); /* Adjust height based on header/footer */
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            margin-bottom: 1rem;
         }
+        .table-scroll-container .table-list thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+        }
+        /* Ensure borders don't overlap badly with sticky */
+        .table-list thead th { border-bottom: 2px solid #d1d5db; }
+        
+        .table-list tbody tr:hover { background: #f3f4f6; }
+        .action-icons { display: flex; justify-content: center; align-items: center; gap: 4px; }
 
         @media print {
             body * { visibility: hidden; }
             #print-area, #print-area * { visibility: visible; }
             #print-area { position: absolute; left: 0; top: 0; width: 100%; background: white; padding: 5mm 15mm 15mm 15mm; }
             body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .doc-table th, .doc-table tr:nth-child(odd) { background-color: #f0f0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .screen-footer { display: none !important; }
         }
 
-        .doc-preview {
-            background: white;
-            padding: 5mm 15mm 15mm 15mm;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            font-size: 10pt;
-            line-height: 1.4;
-            min-height: 280mm;
-            width: 100%;
-            max-width: 210mm;
-            margin: 0 auto;
-        }
-
+        .doc-preview { background: white; padding: 5mm 15mm 15mm 15mm; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); font-size: 10pt; line-height: 1.4; min-height: 280mm; width: 100%; max-width: 210mm; margin: 0 auto; }
         .doc-title { text-align: center; font-weight: 700; font-size: 12pt; margin-bottom: 30px; }
         .doc-section-title { font-weight: 700; margin: 12px 0 8px 0; font-size: 10pt; }
         .doc-info-row { display: flex; margin-bottom: 4px; font-size: 10pt; }
         .doc-info-label { width: 240px; flex-shrink: 0; }
         .doc-info-value { flex: 1; }
-
         .doc-table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9pt; }
         .doc-table th, .doc-table td { border: 1px solid black; padding: 4px; vertical-align: top; }
         .doc-table th { background: #f0f0f0; text-align: center; font-weight: 600; }
         .doc-table thead tr:nth-child(2) th { font-size: 8pt; padding: 2px; font-weight: 400; }
         .doc-table-header-date { background: #e8e8e8; font-weight: 600; text-align: left; }
-
         .doc-signature-container { display: flex; justify-content: space-between; margin-top: 15px; }
         .doc-signature-box { text-align: center; width: 180px; font-size: 9pt; }
         .doc-signature-name { margin-top: 40px; font-weight: 600; text-decoration: underline; }
-        
         .doc-photo-grid { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
         .doc-photo-grid img { width: 8cm; height: auto; border: 1px solid #ccc; }
         .doc-photo-grid.count-1 { display: block; text-align: center; }
         .doc-photo-grid.count-1 img { width: 10cm; }
 
         .page-hidden { display: none; }
+        .screen-footer { position: fixed; bottom: 10px; left: 20px; font-size: 0.7rem; color: rgba(0, 0, 0, 0.25); font-style: italic; z-index: 100; pointer-events: none; user-select: none; }
 
-        .screen-footer {
-            position: fixed;
-            bottom: 10px;
-            left: 20px;
-            font-size: 0.7rem;
-            color: rgba(0, 0, 0, 0.25);
-            font-style: italic;
-            z-index: 100;
-            pointer-events: none;
-            user-select: none;
-        }
+        /* Statement Styles */
+        .stmt-doc { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.5; color: black; }
+        .stmt-title { text-align: center; font-weight: bold; text-decoration: underline; margin: 0 0 20px 0; text-transform: uppercase; font-size: 12pt; }
+        .stmt-header-table { width: 100%; font-size: 12pt; margin-bottom: 20px; border-collapse: collapse; }
+        .stmt-header-table td { padding: 0; vertical-align: top; border: none; line-height: 1.4; }
+        .stmt-content { text-align: justify; margin-bottom: 15px; }
+        .stmt-signature-wrapper { width: 50%; float: right; text-align: center; margin-top: 20px; }
+        .stmt-label { margin-bottom: 2px; font-weight: bold; }
+        .stmt-name-container { display: inline-block; margin-top: 40px; text-align: center; }
+        .stmt-name-text { font-weight: bold; border-bottom: 1px solid black; display: inline; padding-bottom: 1px; }
+        .stmt-details-below { margin-top: 5px; font-size: 11pt; line-height: 1.4; }
+        .stmt-doc::after { content: ""; display: table; clear: both; }
     </style>
 </head>
 <body class="min-h-screen">
-    <div class="screen-footer no-print">
-        @Copyright_Putu_BPS Kota Pekanbaru
-    </div>
+    <div class="screen-footer no-print">@Copyright_Putu_BPS Kota Pekanbaru</div>
 
     <header class="bg-blue-600 text-white py-4 no-print shadow-lg">
         <div class="container mx-auto px-4 relative z-10">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-3">
                 <div>
                     <h1 class="display-font text-2xl font-bold">Laporan Perjalanan Dinas</h1>
-                    <p class="text-blue-100 text-xs">Sistem Input Translok</p>
+                    <p class="text-blue-100 text-xs">Sistem Input Translok BPS Kota Pekanbaru</p>
                 </div>
                 <div class="flex flex-wrap gap-2 justify-center">
-                    <button id="nav-to-list" onclick="showPage('list')" class="btn bg-white text-blue-600 hover:bg-blue-50 text-xs">
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                        Data Perjadin
-                    </button>
+                    <button onclick="showPage('input')" class="btn bg-white text-blue-600 hover:bg-blue-50 text-xs">Input Laporan</button>
+                    <button onclick="showPage('list')" class="btn bg-white text-blue-600 hover:bg-blue-50 text-xs">Data Perjadin</button>
+                    <button onclick="showPage('statement')" class="btn bg-yellow-500 text-white hover:bg-yellow-400 text-xs">Surat Pernyataan</button>
+                    <button onclick="showPage('employee')" class="btn bg-teal-500 text-white hover:bg-teal-400 text-xs">Database Pegawai</button>
                     
                     <input type="file" id="loadFile" accept=".json" class="hidden" onchange="loadDataFile(event)">
                     <button onclick="document.getElementById('loadFile').click()" class="btn bg-blue-500 text-white hover:bg-blue-400 text-xs">Import</button>
+                    <button onclick="exportAllData()" class="btn bg-purple-500 text-white hover:bg-purple-400 text-xs">Export</button>
 
-                    <button onclick="exportAllData()" class="btn bg-purple-500 text-white hover:bg-purple-400 text-xs">Export Backup</button>
-
-                    <button onclick="saveToHistory()" class="btn bg-green-500 text-white hover:bg-green-400 text-xs">Simpan</button>
-                    <button onclick="resetForm()" class="btn bg-blue-500 text-white hover:bg-blue-400 text-xs">Reset</button>
-                    <button onclick="printDocument()" class="btn bg-yellow-500 text-white hover:bg-yellow-400 text-xs">Cetak</button>
+                    <button id="btn-save-draft" onclick="saveToHistory()" class="btn bg-green-500 text-white hover:bg-green-400 text-xs">Simpan</button>
+                    <button id="btn-save-statement" onclick="saveStatement()" class="btn bg-green-500 text-white hover:bg-green-400 text-xs page-hidden">Simpan</button>
+                    
+                    <button id="btn-reset" onclick="resetForm()" class="btn bg-blue-500 text-white hover:bg-blue-400 text-xs">Reset</button>
+                    <button id="btn-reset-statement" onclick="resetStatementForm()" class="btn bg-blue-500 text-white hover:bg-blue-400 text-xs page-hidden">Reset</button>
+                    
+                    <button id="btn-print" onclick="printDocument()" class="btn bg-yellow-500 text-white hover:bg-yellow-400 text-xs">Cetak</button>
+                    <button id="btn-print-statement" onclick="printStatement()" class="btn bg-yellow-500 text-white hover:bg-yellow-400 text-xs page-hidden">Cetak</button>
                 </div>
             </div>
         </div>
@@ -290,47 +184,32 @@
 
     <div class="container mx-auto px-4 py-4 no-print">
         
-        <!-- PAGE: Input Form -->
+        <!-- PAGE: Input Laporan -->
         <div id="page-input">
             <div class="main-grid">
-                <!-- Form Section -->
                 <div>
                     <div class="form-card">
                         <h2 class="section-title">A. Informasi Umum</h2>
                         <div class="space-y-3">
                             <div class="grid grid-cols-5 gap-2">
-                                <div class="col-span-3">
-                                    <label class="form-label">Pemberi Tugas</label>
-                                    <input type="text" id="pemberiTugas" class="form-input" value="Guswandi, S.ST" oninput="handleAutoSave()">
-                                </div>
-                                <div class="col-span-2">
-                                    <label class="form-label">NIP</label>
-                                    <input type="text" id="nipPemberi" class="form-input" value="197008181994121001" oninput="handleAutoSave()">
-                                </div>
+                                <div class="col-span-3"><label class="form-label">Pemberi Tugas</label><input type="text" id="pemberiTugas" class="form-input" value="Guswandi, S.ST" oninput="handleAutoSave()"></div>
+                                <div class="col-span-2"><label class="form-label">NIP</label><input type="text" id="nipPemberi" class="form-input" value="19700818 199412 1 001" oninput="handleAutoSave()"></div>
                             </div>
-
                             <div class="grid grid-cols-5 gap-2">
+                                <!-- Changed to Select Dropdown -->
                                 <div class="col-span-3">
                                     <label class="form-label">Pelaksana</label>
-                                    <input type="text" id="pelaksana" class="form-input" placeholder="Nama Pelaksana" oninput="handleAutoSave()">
+                                    <select id="pelaksana" class="form-input" onchange="handlePelaksanaChange()">
+                                        <option value="">-- Pilih Pelaksana --</option>
+                                    </select>
                                 </div>
-                                <div class="col-span-2">
-                                    <label class="form-label">NIP</label>
-                                    <input type="text" id="nipPelaksana" class="form-input" placeholder="NIP" oninput="handleAutoSave()">
-                                </div>
+                                <div class="col-span-2"><label class="form-label">NIP</label><input type="text" id="nipPelaksana" class="form-input bg-gray-100" readonly></div>
                             </div>
-
                             <div><label class="form-label">Program/Akun</label><input type="text" id="program" class="form-input" placeholder="Kode Akun" oninput="handleAutoSave()"></div>
                             <div><label class="form-label">Tujuan Dinas</label><input type="text" id="tujuan" class="form-input" placeholder="Tujuan" oninput="handleAutoSave()"></div>
                             <div class="grid grid-cols-2 gap-2">
-                                 <div>
-                                    <label class="form-label">Tanggal Mulai</label>
-                                    <input type="date" id="tanggal" class="form-input" oninput="handleAutoSave()">
-                                </div>
-                                <div>
-                                    <label class="form-label">Tanggal Selesai (Opsional)</label>
-                                    <input type="date" id="tanggalSelesai" class="form-input" oninput="handleAutoSave()">
-                                </div>
+                                 <div><label class="form-label">Tanggal Mulai</label><input type="date" id="tanggal" class="form-input" oninput="handleAutoSave()"></div>
+                                 <div><label class="form-label">Tanggal Selesai</label><input type="date" id="tanggalSelesai" class="form-input" oninput="handleAutoSave()"></div>
                             </div>
                         </div>
                     </div>
@@ -340,7 +219,7 @@
                             <h2 class="section-title mb-0">B. Uraian Kegiatan</h2>
                             <button onclick="addActivity()" class="btn btn-primary text-xs py-1 px-2">+ Tambah</button>
                         </div>
-                         <div class="text-xs text-gray-500 mb-2">Pilih tanggal dan waktu (Jam: 01-24). Jam selesai otomatis mengisi mulai berikutnya.</div>
+                         <div class="text-xs text-gray-500 mb-2">Pilih tanggal dan waktu (Jam: 01-24).</div>
                         <div id="activityContainer" class="max-h-60 overflow-y-auto pr-1"></div>
                     </div>
 
@@ -356,16 +235,10 @@
                     </div>
                 </div>
 
-                <!-- Preview Section -->
                 <div>
                     <div class="preview-container">
-                        <div class="preview-toolbar">
-                            <h3 class="font-semibold text-xs text-white">Preview Dokumen</h3>
-                            <span id="saveStatus" class="text-xs text-blue-200"></span>
-                        </div>
-                        <div class="preview-content">
-                            <div id="print-area"></div>
-                        </div>
+                        <div class="preview-toolbar"><h3 class="font-semibold text-xs text-white">Preview Dokumen</h3><span id="saveStatus" class="text-xs text-blue-200"></span></div>
+                        <div class="preview-content"><div id="print-area"></div></div>
                     </div>
                 </div>
             </div>
@@ -376,33 +249,111 @@
              <div class="bg-white rounded-lg shadow p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-bold text-gray-800">Riwayat Data Perjalanan Dinas</h2>
-                    <button onclick="showPage('input')" class="btn btn-gray text-xs">
-                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                        Kembali ke Input
-                    </button>
+                    <button onclick="showPage('input')" class="btn btn-gray text-xs">Kembali</button>
                 </div>
-                <div class="overflow-x-auto">
+                <!-- Changed overflow-x-auto to table-scroll-container for sticky header -->
+                <div class="table-scroll-container">
                     <table class="table-list">
-                        <thead>
-                            <tr>
-                               <th style="width: 30px; text-align: center; vertical-align: middle;">No</th>
-<th style="text-align: center; vertical-align: middle;">Tanggal</th>
-<th style="text-align: center; vertical-align: middle;">Pelaksana</th>
-<th style="text-align: center; vertical-align: middle;">Tujuan</th>
-<th style="width: 140px; text-align: center; vertical-align: middle;">Aksi</th>
-                            </tr>
-                        </thead>
+                        <thead><tr><th style="width: 30px;">No</th><th>Tanggal</th><th>Pelaksana</th><th>Tujuan</th><th style="width: 140px;">Aksi</th></tr></thead>
                         <tbody id="historyTableBody"></tbody>
                     </table>
                 </div>
             </div>
         </div>
 
+        <!-- PAGE: Surat Pernyataan -->
+        <div id="page-statement" class="page-hidden">
+            <div class="main-grid">
+                <div>
+                    <div class="form-card">
+                        <h2 class="section-title">Input Surat Pernyataan</h2>
+                        <div class="space-y-3">
+                            <div class="grid grid-cols-2 gap-2">
+                                <div><label class="form-label">Kota</label><input type="text" id="stmt-kota" class="form-input" value="Pekanbaru" oninput="updateStatementPreview()"></div>
+                                <div><label class="form-label">Tanggal</label><input type="date" id="stmt-tanggal" class="form-input" oninput="updateStatementPreview()"></div>
+                            </div>
+                            
+                            <div class="border-t pt-3 mt-3">
+                                <h3 class="font-semibold text-sm text-gray-700 mb-2">Identitas Yang Menyatakan</h3>
+                                <div class="space-y-2">
+                                    <div>
+                                        <label class="form-label">Nama (Pilih dari Database)</label>
+                                        <select id="stmt-nama" class="form-input" onchange="handleEmployeeSelect(this.value)">
+                                            <option value="">-- Pilih Pegawai --</option>
+                                        </select>
+                                    </div>
+                                    <div><label class="form-label">NIP</label><input type="text" id="stmt-nip" class="form-input bg-gray-100" readonly></div>
+                                    <div><label class="form-label">Pangkat/Golongan</label><input type="text" id="stmt-pangkat" class="form-input bg-gray-100" readonly></div>
+                                    <div><label class="form-label">Jabatan</label><input type="text" id="stmt-jabatan" class="form-input bg-gray-100" readonly></div>
+                                    <div><label class="form-label">Unit Kerja</label><input type="text" id="stmt-unit" class="form-input" value="BPS Kota Pekanbaru" oninput="updateStatementPreview()"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="preview-container">
+                        <div class="preview-toolbar"><h3 class="font-semibold text-xs text-white">Preview Surat Pernyataan</h3></div>
+                        <div class="preview-content"><div id="print-area-statement"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE: Database Pegawai -->
+        <div id="page-employee" class="page-hidden">
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-gray-800">Database Pegawai</h2>
+                    <div class="flex gap-2">
+                        <button onclick="openEmployeeModal()" class="btn btn-primary text-xs">+ Tambah Pegawai</button>
+                        <button onclick="showPage('input')" class="btn btn-gray text-xs">Kembali</button>
+                    </div>
+                </div>
+
+                <!-- Controls for Pagination -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 gap-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-600">Tampilkan</span>
+                        <select id="employeePerPageSelect" class="form-input text-xs py-1 w-20" onchange="changeEmployeePerPage(this.value)">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select>
+                        <span class="text-xs text-gray-600">data</span>
+                    </div>
+                    <div id="employeeInfo" class="text-xs text-gray-500"></div>
+                </div>
+
+                <!-- Scrollable Table Container -->
+                <div class="table-scroll-container">
+                    <table class="table-list">
+                        <thead>
+                            <tr>
+                                <th style="width: 30px;">No</th>
+                                <th>Nama Pegawai</th>
+                                <th>NIP</th>
+                                <th>Pangkat/Golongan</th>
+                                <th>Jabatan</th>
+                                <th style="width: 100px;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employeeTableBody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Footer -->
+                <div class="flex justify-center mt-2" id="employeePagination"></div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Modal View Only -->
+    <!-- Modal View Laporan -->
     <div id="viewModal" class="modal-overlay">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 800px;">
             <div class="modal-header">
                 <h3 class="font-bold text-lg">Pratinjau Laporan</h3>
                 <button onclick="closeViewModal()" class="text-gray-500 hover:text-gray-700 text-2xl leading-none">&times;</button>
@@ -411,668 +362,608 @@
         </div>
     </div>
 
+    <!-- Modal Input Pegawai -->
+    <div id="employeeModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="font-bold text-lg" id="empModalTitle">Tambah Pegawai</h3>
+                <button onclick="closeEmployeeModal()" class="text-gray-500 hover:text-gray-700 text-2xl leading-none">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="emp-id">
+                <div class="space-y-3">
+                    <div><label class="form-label">Nama Lengkap</label><input type="text" id="emp-nama" class="form-input" placeholder="Nama Lengkap"></div>
+                    <div><label class="form-label">NIP</label><input type="text" id="emp-nip" class="form-input" placeholder="NIP"></div>
+                    <div><label class="form-label">Pangkat/Golongan</label><input type="text" id="emp-pangkat" class="form-input" placeholder="Contoh: Penata Muda / III-a"></div>
+                    <div><label class="form-label">Jabatan</label><input type="text" id="emp-jabatan" class="form-input" placeholder="Contoh: Fungsional Umum"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeEmployeeModal()" class="btn btn-outline text-xs">Batal</button>
+                <button onclick="saveEmployee()" class="btn btn-success text-xs">Simpan</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // --- DEFAULT EMPLOYEE DATA (SEEDER) ---
+        const DEFAULT_EMPLOYEES = [
+            { nama: "Alfandra", nip: "198603212025211034", pangkat: "Pemula V", jabatan: "Staf" },
+            { nama: "Arie Nurlaela, A.Md., S.Stat.", nip: "197902042005022002", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Aulia Hasif, SST, M.Si", nip: "198206162007011009", pangkat: "Pembina IV/a", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Benny Dwi Kifana, ST, M.Si", nip: "198812232014031002", pangkat: "Penata Tingkat I III/d", jabatan: "Analis Pengelolaan Keuangan APBN Ahli Muda" },
+            { nama: "Callista Luthfiyah Cahyani, S.Tr.Stat.", nip: "200201052024122003", pangkat: "Penata Muda III/a", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Danang Gunawan, A.Md", nip: "198512102009021009", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Mahir" },
+            { nama: "Desi Damaiyanti, SST, M.E.", nip: "198609202008012002", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Dessy Syukriya Aryati, SST", nip: "199005262013112001", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Erika Sari, SST", nip: "199103152013112001", pangkat: "Penata III/c", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Erlius Natalis Bancin", nip: "197411121998031001", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Fungsional Umum" },
+            { nama: "Erwhin Widyanto, S.E", nip: "198212182006041001", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Fajar Maulinda, SST, M.E.K.K", nip: "198611032009022009", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Guswandi, SST", nip: "197008181994121001", pangkat: "Pembina Tingkat I IV/b", jabatan: "Kepala" },
+            { nama: "Hari Pebriyanto", nip: "198602222006041004", pangkat: "Penata Muda III/a", jabatan: "Pranata Keuangan APBN Terampil" },
+            { nama: "I Putu Diastudi", nip: "197504272007101001", pangkat: "Penata Muda III/a", jabatan: "Fungsional Umum" },
+            { nama: "Ifra Warnita, SST, M.E.K.K.", nip: "198603102009022005", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Imelda Andriani, SST", nip: "198908292012112001", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Ira Maharisa, SE, MM", nip: "198604252005022001", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Lola Netty, S.Stat", nip: "198702152010032002", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Lutfhi Sundoro, S.E.", nip: "199709182025211024", pangkat: "Mahir IX", jabatan: "Staf" },
+            { nama: "Mangatur Manurung, S.Si, M.Si.", nip: "197202212002121002", pangkat: "Pembina IV/a", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Marlis, SE", nip: "197207032005021001", pangkat: "Penata III/c", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Meita Komalasari, S.ST, M.Si.", nip: "197905012000122002", pangkat: "Pembina Tingkat I IV/b", jabatan: "Statistisi Ahli Madya" },
+            { nama: "Musmuliadi, SE", nip: "197606122009011004", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Mutiara Rintia Asnuri Putri, SST", nip: "199503082018022001", pangkat: "Penata III/c", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Nasrul Saputra, SST", nip: "198811262012111001", pangkat: "Penata Tingkat I III/d", jabatan: "Pranata Komputer Ahli Muda" },
+            { nama: "Nia Feriwati, S.Pt", nip: "196902022007012003", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Pranata Keuangan APBN Mahir" },
+            { nama: "Noliza, SST", nip: "198702192009122005", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Nurul Handayani, S.Tr.Stat.", nip: "199903032022012002", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Pranata Komputer Ahli Pertama" },
+            { nama: "Oktaviani Armina", nip: "198610122006042002", pangkat: "Penata Muda III/a", jabatan: "Fungsional Umum" },
+            { nama: "Poppi Rahma Nanda, S.Tr.Stat.", nip: "199607212019122001", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Razaliana, S.Sos", nip: "197901052007011001", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Reny Roswita Nazar, S.Stat.", nip: "199607272019032001", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Rizka Heryanti, S.Tr.Stat.", nip: "199609192019012003", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Rudiarman, SE", nip: "197301032002121003", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Rushi Dayat Tullah", nip: "199510292025211027", pangkat: "Pemula V", jabatan: "Staf" },
+            { nama: "Sofi Zamzanah, S.Tr.Stat.", nip: "200102252026032001", pangkat: "Penata Muda III/a", jabatan: "Staf" },
+            { nama: "Suci Dwi Martiani, SST, M.I.Kom.", nip: "198703042009022003", pangkat: "Pembina IV/a", jabatan: "Staf" },
+            { nama: "Sugiman, S.Kom", nip: "197405052005021001", pangkat: "Penata Tingkat I III/d", jabatan: "Pranata Komputer Ahli Muda" },
+            { nama: "Sumarlin, A.Md", nip: "198507062009021008", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Pranata Keuangan APBN Mahir" },
+            { nama: "Ujang Nurhidayat, S.Kom", nip: "198112142010121001", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Pranata Komputer Ahli Pertama" },
+            { nama: "Wahyu Adhiputra, SST", nip: "198611092010121008", pangkat: "Penata Tingkat I III/d", jabatan: "Kepala Subbagian Umum" },
+            { nama: "Yuli Hairani, SST", nip: "199407092017012002", pangkat: "Penata III/c", jabatan: "Statistisi Ahli Pertama" }
+        ];
+
         // State
-        let activities = [];
-        let activityCounter = 0;
-        let photos = [];
-        let autoSaveTimeout = null;
+        let activities = []; let activityCounter = 0; let photos = []; let autoSaveTimeout = null;
+        let employees = []; let employeeCounter = 0;
+        let employeeCurrentPage = 1;
+        let employeeRowsPerPage = 10;
 
         const LS_DRAFT_KEY = 'laporan_draft';
         const LS_HISTORY_KEY = 'laporan_history';
+        const LS_STATEMENT_KEY = 'laporan_statement_draft';
+        const LS_EMPLOYEE_KEY = 'employee_db';
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            loadDraft();
+            loadDraft(); loadEmployees(); 
             if(activities.length === 0) addActivity();
-            updatePreview();
+            updatePreview(); updateStatementPreview(); 
+            renderEmployeeTable(); 
+            updatePelaksanaDropdown(); // Populate dropdown on load
+            setActiveNavButtons('input');
         });
 
         // --- Navigation Logic ---
         function showPage(page) {
-            if (page === 'list') {
-                document.getElementById('page-input').classList.add('page-hidden');
-                document.getElementById('page-list').classList.remove('page-hidden');
-                renderHistoryTable();
-            } else {
-                document.getElementById('page-input').classList.remove('page-hidden');
-                document.getElementById('page-list').classList.add('page-hidden');
-            }
+            ['input', 'list', 'statement', 'employee'].forEach(p => document.getElementById('page-'+p).classList.add('page-hidden'));
+            document.getElementById('page-' + page).classList.remove('page-hidden');
+            setActiveNavButtons(page);
+            if(page === 'list') renderHistoryTable();
+            if(page === 'statement') { updateStatementDropdown(); updateStatementPreview(); }
+            if(page === 'employee') renderEmployeeTable();
+            if(page === 'input') updatePelaksanaDropdown(); // Refresh dropdown if needed
         }
 
-        // --- Auto Save Logic ---
-        function handleAutoSave() {
-            updatePreview();
-            clearTimeout(autoSaveTimeout);
-            document.getElementById('saveStatus').textContent = "Menyimpan...";
-            autoSaveTimeout = setTimeout(() => {
-                saveDraft();
-                document.getElementById('saveStatus').textContent = "Tersimpan Otomatis";
-                setTimeout(() => { document.getElementById('saveStatus').textContent = ""; }, 2000);
-            }, 500);
+        function setActiveNavButtons(page) {
+            const draftBtns = ['btn-save-draft', 'btn-reset', 'btn-print'];
+            const statementBtns = ['btn-save-statement', 'btn-reset-statement', 'btn-print-statement'];
+            draftBtns.forEach(id => document.getElementById(id).classList.add('page-hidden'));
+            statementBtns.forEach(id => document.getElementById(id).classList.add('page-hidden'));
+            if(page === 'input' || page === 'list' || page === 'employee') draftBtns.forEach(id => document.getElementById(id).classList.remove('page-hidden'));
+            else if(page === 'statement') statementBtns.forEach(id => document.getElementById(id).classList.remove('page-hidden'));
         }
 
-        function saveDraft() {
-            const data = gatherFormData();
-            localStorage.setItem(LS_DRAFT_KEY, JSON.stringify(data));
-        }
-
-        function loadDraft() {
-            const draft = localStorage.getItem(LS_DRAFT_KEY);
-            if (draft) {
-                try {
-                    const data = JSON.parse(draft);
-                    populateForm(data);
-                } catch (e) { console.error("Failed to load draft", e); }
-            } else {
-                document.getElementById('tanggal').value = new Date().toISOString().split('T')[0];
-            }
-        }
-
-        function gatherFormData() {
-            return {
-                pemberiTugas: document.getElementById('pemberiTugas').value,
-                nipPemberi: document.getElementById('nipPemberi').value,
-                pelaksana: document.getElementById('pelaksana').value,
-                nipPelaksana: document.getElementById('nipPelaksana').value,
-                program: document.getElementById('program').value,
-                tujuan: document.getElementById('tujuan').value,
-                tanggal: document.getElementById('tanggal').value,
-                tanggalSelesai: document.getElementById('tanggalSelesai').value,
-                dokumentasi: document.getElementById('dokumentasi').value,
-                activities: activities.map(a => ({
-                    tanggal: a.tanggal, waktuMulai: a.waktuMulai, waktuSelesai: a.waktuSelesai, uraian: a.uraian
-                })),
-                photos: photos
-            };
-        }
-
-        function populateForm(data) {
-            document.getElementById('pemberiTugas').value = data.pemberiTugas || 'Guswandi, S.ST';
-            document.getElementById('nipPemberi').value = data.nipPemberi || '197008181994121001';
-            document.getElementById('pelaksana').value = data.pelaksana || '';
-            document.getElementById('nipPelaksana').value = data.nipPelaksana || '';
-            document.getElementById('program').value = data.program || '';
-            document.getElementById('tujuan').value = data.tujuan || '';
-            document.getElementById('tanggal').value = data.tanggal || '';
-            document.getElementById('tanggalSelesai').value = data.tanggalSelesai || '';
-            document.getElementById('dokumentasi').value = data.dokumentasi || '';
-
-            photos = data.photos || [];
-            renderPhotos();
-
-            const container = document.getElementById('activityContainer');
-            container.innerHTML = '';
-            activities = [];
-            activityCounter = 0;
-
-            if (data.activities && data.activities.length > 0) {
-                data.activities.forEach(act => {
-                    addActivity(act);
-                });
-            }
-            updatePreview();
-        }
-
-        // --- Photo Handling (Max 2) ---
-        function triggerPhotoUpload() {
-            if (photos.length >= 2) {
-                alert("Maksimal hanya 2 foto yang diizinkan.");
-                return;
-            }
-            document.getElementById('photoInput').click();
-        }
-
-        function handlePhotoUpload(event) {
-            const files = Array.from(event.target.files);
-            const remainingSlots = 2 - photos.length;
-            const filesToAdd = files.slice(0, remainingSlots);
-
-            filesToAdd.forEach(file => {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    photos.push(e.target.result);
-                    renderPhotos();
-                    handleAutoSave();
-                };
-                reader.readAsDataURL(file);
-            });
-            event.target.value = '';
-        }
-
-        function removePhoto(index) {
-            photos.splice(index, 1);
-            renderPhotos();
-            handleAutoSave();
-        }
-
-        function renderPhotos() {
-            const container = document.getElementById('photoPreviewContainer');
-            container.className = `photo-grid count-${photos.length}`;
-            container.innerHTML = photos.map((src, index) => `
-                <div class="photo-item">
-                    <img src="${src}" alt="Dokumentasi ${index + 1}">
-                    <button class="delete-btn" onclick="removePhoto(${index})">&times;</button>
-                </div>
-            `).join('');
-        }
-
-        // --- Activities Handling ---
+        // --- Laporan Logic ---
+        function handleAutoSave() { updatePreview(); clearTimeout(autoSaveTimeout); document.getElementById('saveStatus').textContent = "Menyimpan..."; autoSaveTimeout = setTimeout(() => { saveDraft(); document.getElementById('saveStatus').textContent = "Tersimpan"; setTimeout(() => { document.getElementById('saveStatus').textContent = ""; }, 2000); }, 500); }
+        function saveDraft() { localStorage.setItem(LS_DRAFT_KEY, JSON.stringify(gatherFormData())); }
+        function loadDraft() { const draft = localStorage.getItem(LS_DRAFT_KEY); if (draft) { try { populateForm(JSON.parse(draft)); } catch (e) {} } else { document.getElementById('tanggal').value = new Date().toISOString().split('T')[0]; } }
+        function gatherFormData() { return { pemberiTugas: document.getElementById('pemberiTugas').value, nipPemberi: document.getElementById('nipPemberi').value, pelaksana: document.getElementById('pelaksana').value, nipPelaksana: document.getElementById('nipPelaksana').value, program: document.getElementById('program').value, tujuan: document.getElementById('tujuan').value, tanggal: document.getElementById('tanggal').value, tanggalSelesai: document.getElementById('tanggalSelesai').value, dokumentasi: document.getElementById('dokumentasi').value, activities: activities.map(a => ({ tanggal: a.tanggal, waktuMulai: a.waktuMulai, waktuSelesai: a.waktuSelesai, uraian: a.uraian })), photos: photos }; }
         
-        function generateHourOptions(selected) {
-            let options = '';
-            for(let i=1; i<=24; i++) {
-                const val = i.toString().padStart(2, '0');
-                options += `<option value="${val}" ${val === selected ? 'selected' : ''}>${val}</option>`;
-            }
-            return options;
-        }
-
-        function generateMinuteOptions(selected) {
-            let options = '';
-            for(let i=0; i<60; i++) {
-                const val = i.toString().padStart(2, '0');
-                options += `<option value="${val}" ${val === selected ? 'selected' : ''}>${val}</option>`;
-            }
-            return options;
-        }
-
-        function addActivity(data = null) {
-            activityCounter++;
-            const id = activityCounter;
-            const mainDate = document.getElementById('tanggal').value;
-            const actData = data || { tanggal: mainDate, waktuMulai: '', waktuSelesai: '', uraian: '' };
-            activities.push({ id, ...actData });
-
-            const container = document.getElementById('activityContainer');
-            const row = document.createElement('div');
-            row.className = 'activity-row';
-            row.id = `activity-${id}`;
+        function populateForm(data) {
+            document.getElementById('pemberiTugas').value = data.pemberiTugas || 'Guswandi, S.ST'; 
+            document.getElementById('nipPemberi').value = data.nipPemberi || '19700818 199412 1 001'; 
             
-            const mulaiParts = (actData.waktuMulai || '').split(':');
-            const selesaiParts = (actData.waktuSelesai || '').split(':');
+            // Populate Dropdown first, then set value
+            updatePelaksanaDropdown(data.pelaksana);
             
-            const jamMulai = mulaiParts[0] || '01';
-            const menitMulai = mulaiParts[1] || '00';
-            const jamSelesai = selesaiParts[0] || '01';
-            const menitSelesai = selesaiParts[1] || '00';
-
-            row.innerHTML = `
-                <div class="flex justify-between items-center mb-1">
-                    <span class="font-semibold text-xs text-blue-700">#${activities.length}</span>
-                    <button onclick="removeActivity(${id})" class="btn btn-danger btn-icon leading-none">&times;</button>
-                </div>
-                <div class="grid grid-cols-3 gap-2 mb-1">
-                    <div>
-                        <label class="text-xs text-gray-500">Tanggal</label>
-                        <input type="date" class="form-input text-xs py-1" id="tanggal-act-${id}" value="${actData.tanggal || ''}" onchange="updateActivityData(${id})">
-                    </div>
-                    <div>
-                        <label class="text-xs text-gray-500 block text-center">Mulai</label>
-                        <div class="time-picker-group justify-center">
-                            <select id="jamMulai-${id}" onchange="updateActivityData(${id})">${generateHourOptions(jamMulai)}</select>
-                            <span class="time-separator">:</span>
-                            <select id="menitMulai-${id}" onchange="updateActivityData(${id})">${generateMinuteOptions(menitMulai)}</select>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="text-xs text-gray-500 block text-center">Selesai</label>
-                        <div class="time-picker-group justify-center">
-                            <select id="jamSelesai-${id}" onchange="updateActivityData(${id})">${generateHourOptions(jamSelesai)}</select>
-                            <span class="time-separator">:</span>
-                            <select id="menitSelesai-${id}" onchange="updateActivityData(${id})">${generateMinuteOptions(menitSelesai)}</select>
-                        </div>
-                    </div>
-                </div>
-                <textarea class="form-input text-xs" id="uraian-${id}" rows="2" placeholder="Uraian kegiatan..." onchange="updateActivityData(${id})">${actData.uraian || ''}</textarea>
-            `;
-            container.appendChild(row);
-            updatePreview();
+            document.getElementById('program').value = data.program || ''; 
+            document.getElementById('tujuan').value = data.tujuan || ''; 
+            document.getElementById('tanggal').value = data.tanggal || ''; 
+            document.getElementById('tanggalSelesai').value = data.tanggalSelesai || ''; 
+            document.getElementById('dokumentasi').value = data.dokumentasi || '';
+            
+            photos = data.photos || []; renderPhotos();
+            const container = document.getElementById('activityContainer'); container.innerHTML = ''; activities = []; activityCounter = 0;
+            if (data.activities && data.activities.length > 0) { data.activities.forEach(act => addActivity(act)); } updatePreview();
         }
-
-        function removeActivity(id) {
-            document.getElementById(`activity-${id}`)?.remove();
-            activities = activities.filter(a => a.id !== id);
-            document.querySelectorAll('#activityContainer .activity-row span').forEach((badge, idx) => {
-                badge.textContent = `#${idx + 1}`;
+        
+        // New Logic: Populate Pelaksana Dropdown
+        function updatePelaksanaDropdown(selectedName = null) {
+            const select = document.getElementById('pelaksana');
+            const currentVal = selectedName || select.value;
+            
+            // Clear options
+            select.innerHTML = '<option value="">-- Pilih Pelaksana --</option>';
+            
+            // Sort employees
+            const sortedEmployees = [...employees].sort((a, b) => a.nama.localeCompare(b.nama));
+            
+            sortedEmployees.forEach(emp => {
+                const option = document.createElement('option');
+                option.value = emp.nama;
+                option.textContent = emp.nama;
+                select.appendChild(option);
             });
+
+            // Set selected value if exists
+            if (currentVal) {
+                // Check if value exists in list
+                const exists = sortedEmployees.some(e => e.nama === currentVal);
+                if (exists) {
+                    select.value = currentVal;
+                    // Trigger autofill for NIP if loading from draft
+                    handlePelaksanaChange(currentVal); 
+                } else {
+                    // If draft has a name not in DB (legacy), add it temporarily
+                    const customOption = document.createElement('option');
+                    customOption.value = currentVal;
+                    customOption.textContent = currentVal + " (Data Lama)";
+                    select.appendChild(customOption);
+                    select.value = currentVal;
+                }
+            }
+        }
+
+        function handlePelaksanaChange(passedValue = null) {
+            const nama = passedValue || document.getElementById('pelaksana').value;
+            const nipInput = document.getElementById('nipPelaksana');
+            
+            const emp = employees.find(e => e.nama === nama);
+            if (emp) {
+                nipInput.value = emp.nip;
+            } else {
+                // Only clear if not passed (means user manually changed to empty)
+                if(!passedValue) nipInput.value = ''; 
+            }
             handleAutoSave();
         }
 
-        function updateActivityData(id) {
-            const activity = activities.find(a => a.id === id);
-            if (activity) {
-                activity.tanggal = document.getElementById(`tanggal-act-${id}`).value;
-                
-                const jamMulai = document.getElementById(`jamMulai-${id}`).value;
-                const menitMulai = document.getElementById(`menitMulai-${id}`).value;
-                activity.waktuMulai = `${jamMulai}:${menitMulai}`;
-
-                const jamSelesai = document.getElementById(`jamSelesai-${id}`).value;
-                const menitSelesai = document.getElementById(`menitSelesai-${id}`).value;
-                activity.waktuSelesai = `${jamSelesai}:${menitSelesai}`;
-
-                activity.uraian = document.getElementById(`uraian-${id}`).value;
-
-                // AUTO-FILL LOGIC
-                const currentIndex = activities.findIndex(a => a.id === id);
-                if (currentIndex !== -1 && currentIndex < activities.length - 1) {
-                    const nextActivity = activities[currentIndex + 1];
-                    const nextId = nextActivity.id;
-                    const nextJamMulaiEl = document.getElementById(`jamMulai-${nextId}`);
-                    const nextMenitMulaiEl = document.getElementById(`menitMulai-${nextId}`);
-                    
-                    if (nextJamMulaiEl && nextMenitMulaiEl) {
-                        nextJamMulaiEl.value = jamSelesai;
-                        nextMenitMulaiEl.value = menitSelesai;
-                        nextActivity.waktuMulai = `${jamSelesai}:${menitSelesai}`;
-                    }
-                }
-                
-                handleAutoSave();
-            }
-        }
-
-        // --- Utilities ---
-        function formatDateIndonesia(dateStr) {
-            if (!dateStr) return '';
-            const date = new Date(dateStr);
-            const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-            const bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-            return `${hari[date.getDay()]} / ${date.getDate()} ${bulan[date.getMonth()]} ${date.getFullYear()}`;
-        }
-
-        // --- Preview & Print ---
-        function generatePreviewHTML(data) {
-            let activitiesHtml = '';
-            let globalNo = 1;
-            
-            const grouped = {};
-            (data.activities || []).forEach(act => {
-                const dateKey = act.tanggal || 'No Date';
-                if (!grouped[dateKey]) grouped[dateKey] = [];
-                grouped[dateKey].push(act);
-            });
-
-            const sortedDates = Object.keys(grouped).sort();
-
-            sortedDates.forEach(dateKey => {
-                activitiesHtml += `<tr class="doc-table-header-date"><td colspan="3">${formatDateIndonesia(dateKey)}</td></tr>`;
-                
-                grouped[dateKey].forEach(act => {
-                    activitiesHtml += `
-                        <tr>
-                            <td style="text-align: center; width: 30px;">${globalNo}</td>
-                            <td style="text-align: center; width: 120px;">${act.waktuMulai || '-'} - ${act.waktuSelesai || '-'}</td>
-                            <td style="text-align: justify; text-justify: inter-word;">${act.uraian || '-'}</td>
-                        </tr>
-                    `;
-                    globalNo++;
-                });
-            });
-
-            if(activitiesHtml === '') activitiesHtml = '<tr><td colspan="3" style="text-align: center;">Belum ada kegiatan</td></tr>';
-
-            let photoHtml = '';
-            if (data.photos && data.photos.length > 0) {
-                photoHtml = `
-                    <div style="margin-top: 20px;">
-                        <div class="doc-section-title" style="text-align: center; width: 100%;">D. DOKUMENTASI TRANSLOK</div>
-                        <div style="text-align: center; font-size: 9pt; margin-bottom: 5px;">${data.dokumentasi || ''}</div>
-                        <div class="doc-photo-grid count-${data.photos.length}">
-                            ${data.photos.map(src => `<img src="${src}" alt="Foto">`).join('')}
-                        </div>
-                    </div>
-                `;
-            }
-
-            let dateDisplay = '';
-            if (data.tanggal) {
-                dateDisplay = formatDateIndonesia(data.tanggal);
-                if (data.tanggalSelesai) {
-                    dateDisplay += ` s.d ${formatDateIndonesia(data.tanggalSelesai)}`;
-                }
-            } else {
-                dateDisplay = '________________';
-            }
-
-            return `
-                <div class="doc-preview">
-                    <div class="doc-title">LAPORAN HASIL PERJALANAN DINAS</div>
-                    
-                    <div class="doc-section-title">A. INFORMASI UMUM</div>
-                    <style>
-.doc-info-row {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 8px;
-    line-height: 1.5;
-}
-
-.doc-info-number {
-    width: 25px;
-}
-
-.doc-info-label {
-    width: 280px;
-    word-wrap: break-word;
-}
-
-.doc-info-separator {
-    width: 10px;
-}
-
-.doc-info-value {
-    flex: 1;
-}
+        function triggerPhotoUpload() { if (photos.length >= 2) { alert("Maksimal 2 foto."); return; } document.getElementById('photoInput').click(); }
+        function handlePhotoUpload(event) { const files = Array.from(event.target.files); const remainingSlots = 2 - photos.length; files.slice(0, remainingSlots).forEach(file => { const reader = new FileReader(); reader.onload = (e) => { photos.push(e.target.result); renderPhotos(); handleAutoSave(); }; reader.readAsDataURL(file); }); event.target.value = ''; }
+        function removePhoto(index) { photos.splice(index, 1); renderPhotos(); handleAutoSave(); }
+        function renderPhotos() { const container = document.getElementById('photoPreviewContainer'); container.className = `photo-grid count-${photos.length}`; container.innerHTML = photos.map((src, index) => `<div class="photo-item"><img src="${src}" alt="Doc ${index + 1}"><button class="delete-btn" onclick="removePhoto(${index})">&times;</button></div>`).join(''); }
+        function generateHourOptions(selected) { let options = ''; for(let i=1; i<=24; i++) { const val = i.toString().padStart(2, '0'); options += `<option value="${val}" ${val === selected ? 'selected' : ''}>${val}</option>`; } return options; }
+        function generateMinuteOptions(selected) { let options = ''; for(let i=0; i<60; i++) { const val = i.toString().padStart(2, '0'); options += `<option value="${val}" ${val === selected ? 'selected' : ''}>${val}</option>`; } return options; }
+        function addActivity(data = null) { activityCounter++; const id = activityCounter; const mainDate = document.getElementById('tanggal').value; const actData = data || { tanggal: mainDate, waktuMulai: '', waktuSelesai: '', uraian: '' }; activities.push({ id, ...actData }); const container = document.getElementById('activityContainer'); const row = document.createElement('div'); row.className = 'activity-row'; row.id = `activity-${id}`; const mulaiParts = (actData.waktuMulai || '').split(':'); const selesaiParts = (actData.waktuSelesai || '').split(':'); row.innerHTML = `<div class="flex justify-between items-center mb-1"><span class="font-semibold text-xs text-blue-700">#${activities.length}</span><button onclick="removeActivity(${id})" class="btn btn-danger btn-icon leading-none">&times;</button></div><div class="grid grid-cols-3 gap-2 mb-1"><div><label class="text-xs text-gray-500">Tanggal</label><input type="date" class="form-input text-xs py-1" id="tanggal-act-${id}" value="${actData.tanggal || ''}" onchange="updateActivityData(${id})"></div><div><label class="text-xs text-gray-500 block text-center">Mulai</label><div class="time-picker-group justify-center"><select id="jamMulai-${id}" onchange="updateActivityData(${id})">${generateHourOptions(mulaiParts[0] || '01')}</select><span class="time-separator">:</span><select id="menitMulai-${id}" onchange="updateActivityData(${id})">${generateMinuteOptions(mulaiParts[1] || '00')}</select></div></div><div><label class="text-xs text-gray-500 block text-center">Selesai</label><div class="time-picker-group justify-center"><select id="jamSelesai-${id}" onchange="updateActivityData(${id})">${generateHourOptions(selesaiParts[0] || '01')}</select><span class="time-separator">:</span><select id="menitSelesai-${id}" onchange="updateActivityData(${id})">${generateMinuteOptions(selesaiParts[1] || '00')}</select></div></div></div><textarea class="form-input text-xs" id="uraian-${id}" rows="2" placeholder="Uraian..." onchange="updateActivityData(${id})">${actData.uraian || ''}</textarea>`; container.appendChild(row); updatePreview(); }
+        function removeActivity(id) { document.getElementById(`activity-${id}`)?.remove(); activities = activities.filter(a => a.id !== id); document.querySelectorAll('#activityContainer .activity-row span').forEach((badge, idx) => badge.textContent = `#${idx + 1}`); handleAutoSave(); }
+        function updateActivityData(id) { const activity = activities.find(a => a.id === id); if (activity) { activity.tanggal = document.getElementById(`tanggal-act-${id}`).value; const jamMulai = document.getElementById(`jamMulai-${id}`).value; const menitMulai = document.getElementById(`menitMulai-${id}`).value; activity.waktuMulai = `${jamMulai}:${menitMulai}`; const jamSelesai = document.getElementById(`jamSelesai-${id}`).value; const menitSelesai = document.getElementById(`menitSelesai-${id}`).value; activity.waktuSelesai = `${jamSelesai}:${menitSelesai}`; activity.uraian = document.getElementById(`uraian-${id}`).value; const currentIndex = activities.findIndex(a => a.id === id); if (currentIndex !== -1 && currentIndex < activities.length - 1) { const nextActivity = activities[currentIndex + 1]; const nextId = nextActivity.id; const nextJamMulaiEl = document.getElementById(`jamMulai-${nextId}`); const nextMenitMulaiEl = document.getElementById(`menitMulai-${nextId}`); if (nextJamMulaiEl && nextMenitMulaiEl) { nextJamMulaiEl.value = jamSelesai; nextMenitMulaiEl.value = menitSelesai; nextActivity.waktuMulai = `${jamSelesai}:${menitSelesai}`; } } handleAutoSave(); } }
+        function formatDateIndonesia(dateStr) { if (!dateStr) return ''; const date = new Date(dateStr); const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']; const bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']; return `${hari[date.getDay()]} / ${date.getDate()} ${bulan[date.getMonth()]} ${date.getFullYear()}`; }
+        function generatePreviewHTML(data) { let activitiesHtml = ''; let globalNo = 1; const grouped = {}; (data.activities || []).forEach(act => { const dateKey = act.tanggal || 'No Date'; if (!grouped[dateKey]) grouped[dateKey] = []; grouped[dateKey].push(act); }); Object.keys(grouped).sort().forEach(dateKey => { activitiesHtml += `<tr class="doc-table-header-date"><td colspan="3">${formatDateIndonesia(dateKey)}</td></tr>`; grouped[dateKey].forEach(act => { activitiesHtml += `<tr><td style="text-align: center; width: 30px;">${globalNo}</td><td style="text-align: center; width: 120px;">${act.waktuMulai || '-'} - ${act.waktuSelesai || '-'}</td><td style="text-align: justify; text-justify: inter-word;">${act.uraian || '-'}</td></tr>`; globalNo++; }); }); if(activitiesHtml === '') activitiesHtml = '<tr><td colspan="3" style="text-align: center;">Belum ada kegiatan</td></tr>'; let photoHtml = ''; if (data.photos && data.photos.length > 0) { photoHtml = `<div style="margin-top: 20px;"><div class="doc-section-title" style="text-align: center; width: 100%;">D. DOKUMENTASI TRANSLOK</div><div style="text-align: center; font-size: 9pt; margin-bottom: 5px;">${data.dokumentasi || ''}</div><div class="doc-photo-grid count-${data.photos.length}">${data.photos.map(src => `<img src="${src}" alt="Foto">`).join('')}</div></div>`; } let dateDisplay = data.tanggal ? formatDateIndonesia(data.tanggal) + (data.tanggalSelesai ? ` s.d ${formatDateIndonesia(data.tanggalSelesai)}` : '') : '________________'; return `<div class="doc-preview"><div class="doc-title">LAPORAN HASIL PERJALANAN DINAS</div><div class="doc-section-title">A. INFORMASI UMUM</div><style>
+.doc-info-row { display: flex; align-items: flex-start; margin-bottom: 8px; line-height: 1.5; }
+.doc-info-number { width: 25px; }
+.doc-info-label { width: 280px; word-wrap: break-word; }
+.doc-info-separator { width: 10px; }
+.doc-info-value { flex: 1; }
 </style>
-
-<div class="doc-info-row">
-    <div class="doc-info-number">1.</div>
-    <div class="doc-info-label">Pemberi Tugas Perjalanan Dinas</div>
-    <div class="doc-info-separator">:</div>
-    <div class="doc-info-value">${data.pemberiTugas || '________________'}</div>
-</div>
-
-<div class="doc-info-row">
-    <div class="doc-info-number">2.</div>
-    <div class="doc-info-label">Pelaksana Perjalanan Dinas</div>
-    <div class="doc-info-separator">:</div>
-    <div class="doc-info-value">${data.pelaksana || '________________'}</div>
-</div>
-
-<div class="doc-info-row">
-    <div class="doc-info-number">3.</div>
-    <div class="doc-info-label">Program/kegiatan/output/komponen/akun yang membiayai</div>
-    <div class="doc-info-separator">:</div>
-    <div class="doc-info-value">${data.program || '________________'}</div>
-</div>
-
-<div class="doc-info-row">
-    <div class="doc-info-number">4.</div>
-    <div class="doc-info-label">Tujuan Perjalanan Dinas</div>
-    <div class="doc-info-separator">:</div>
-    <div class="doc-info-value">${data.tujuan || '________________'}</div>
-</div>
-
-<div class="doc-info-row">
-    <div class="doc-info-number">5.</div>
-    <div class="doc-info-label">Jadwal Perjalanan Dinas</div>
-    <div class="doc-info-separator">:</div>
-    <div class="doc-info-value">${dateDisplay || '________________'}</div>
-</div>
-                    
-                    <div class="doc-section-title">B. URAIAN KEGIATAN, MATERI YANG DIBAHAS DAN RESUME HASIL PERJALANAN DINAS</div>
-                    <table class="doc-table">
-                        <thead>
-                            <tr><th>No</th><th>Hari/Tanggal/Waktu</th><th>Uraian Kegiatan</th></tr>
-                            <tr><th>(1)</th><th>(2)</th><th>(3)</th></tr>
-                        </thead>
-                        <tbody>
-                            ${activitiesHtml}
-                        </tbody>
-                    </table>
-                    
-                    <div class="doc-section-title" style="margin-top: 15px;">
-    C. PENGESAHAN LAPORAN HASIL PERJALANAN DINAS
-</div>
-
-<div style="margin-top: 5px; margin-bottom: -20px;">Mengetahui:</div>
-                    <div class="doc-signature-container">
-                        <div class="doc-signature-box">
-                            <div style="font-weight: 600; margin-top: 5px;">Pemberi Tugas,</div>
-                            <div class="doc-signature-name">${data.pemberiTugas || '________________'}</div>
-                            <div>NIP. ${data.nipPemberi || '________________'}</div>
-                        </div>
-                        <div class="doc-signature-box">
-                            <div style="font-weight: 600; margin-top: 5px;">Pelaksana Transport Lokal,</div>
-                            <div class="doc-signature-name">${data.pelaksana || '________________'}</div>
-                            <div>NIP. ${data.nipPelaksana || '________________'}</div>
-                        </div>
-                    </div>
-                    
-                    ${photoHtml}
-                </div>
-            `;
-        }
-
-        function updatePreview() {
-            const data = gatherFormData();
-            document.getElementById('print-area').innerHTML = generatePreviewHTML(data);
-        }
-
-        function printDocument() {
-            const printContent = document.getElementById('print-area').innerHTML;
-            openPrintWindow(printContent);
-        }
-
-        // General Print Function
-        function openPrintWindow(content) {
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Cetak Laporan</title>
-                    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-                    <style>
-                        * { font-family: 'Source Sans Pro', sans-serif; }
-                        body { margin: 0; padding: 5mm 10mm 5mm 10mm; background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-                        .doc-preview { background: white; font-size: 10pt; line-height: 1.4; }
-                        .doc-title { text-align: center; font-weight: 700; font-size: 12pt; margin-bottom: 30px; }
-                        .doc-section-title { font-weight: 700; margin: 12px 0 8px 0; font-size: 10pt; }
-                        .doc-info-row { display: flex; margin-bottom: 4px; font-size: 10pt; }
-                        .doc-info-label { width: 240px; flex-shrink: 0; }
-                        .doc-info-value { flex: 1; }
-                        .doc-table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9pt; }
-                        .doc-table th, .doc-table td { border: 1px solid black; padding: 4px; vertical-align: top; }
-                        .doc-table th { background-color: #f0f0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; text-align: center; font-weight: 600; }
-                        thead tr:nth-child(2) th { font-size: 8pt; padding: 2px; font-weight: normal; }
-                        .doc-table-header-date { background-color: #e8e8e8 !important; -webkit-print-color-adjust: exact; font-weight: 600; }
-                        .doc-signature-container { display: flex; justify-content: space-between; margin-top: 15px; }
-                        .doc-signature-box { text-align: center; width: 180px; font-size: 9pt; }
-                        .doc-signature-name { margin-top: 40px; font-weight: 600; text-decoration: underline; }
-                        
-                        .doc-photo-grid { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
-                        .doc-photo-grid img { width: 8cm; height: auto; border: 1px solid #ccc; }
-                        .doc-photo-grid.count-1 { display: block; text-align: center; }
-                        .doc-photo-grid.count-1 img { width: 11cm; }
-                    </style>
-                </head>
-                <body>${content}<script>setTimeout(function() { window.print(); window.close(); }, 500);<\/script></body>
-                </html>
-            `);
-            printWindow.document.close();
+<div class="doc-info-row"><div class="doc-info-number">1.</div><div class="doc-info-label">Pemberi Tugas Perjalanan Dinas</div><div class="doc-info-separator">:</div><div class="doc-info-value">${data.pemberiTugas || '________________'}</div></div>
+<div class="doc-info-row"><div class="doc-info-number">2.</div><div class="doc-info-label">Pelaksana Perjalanan Dinas</div><div class="doc-info-separator">:</div><div class="doc-info-value">${data.pelaksana || '________________'}</div></div>
+<div class="doc-info-row"><div class="doc-info-number">3.</div><div class="doc-info-label">Program/kegiatan/output/komponen/akun yang membiayai</div><div class="doc-info-separator">:</div><div class="doc-info-value">${data.program || '________________'}</div></div>
+<div class="doc-info-row"><div class="doc-info-number">4.</div><div class="doc-info-label">Tujuan Perjalanan Dinas</div><div class="doc-info-separator">:</div><div class="doc-info-value">${data.tujuan || '________________'}</div></div>
+<div class="doc-info-row"><div class="doc-info-number">5.</div><div class="doc-info-label">Jadwal Perjalanan Dinas</div><div class="doc-info-separator">:</div><div class="doc-info-value">${dateDisplay || '________________'}</div></div>
+<div class="doc-section-title">B. URAIAN KEGIATAN, MATERI YANG DIBAHAS DAN RESUME HASIL PERJALANAN DINAS</div><table class="doc-table"><thead><tr><th>No</th><th>Hari/Tanggal/Waktu</th><th>Uraian Kegiatan</th></tr><tr><th>(1)</th><th>(2)</th><th>(3)</th></tr></thead><tbody>${activitiesHtml}</tbody></table><div class="doc-section-title" style="margin-top: 15px;">C. PENGESAHAN LAPORAN HASIL PERJALANAN DINAS</div><div style="margin-top: 5px;margin-bottom: -20px;">Mengetahui:</div><div class="doc-signature-container"><div class="doc-signature-box"><div style="font-weight: 600; margin-top: 5px;">Pemberi Tugas,</div><div class="doc-signature-name">${data.pemberiTugas || '________________'}</div><div>NIP. ${data.nipPemberi || '________________'}</div></div><div class="doc-signature-box"><div style="font-weight: 600; margin-top: 5px;">Pelaksana Transport Lokal,</div><div class="doc-signature-name">${data.pelaksana || '________________'}</div><div>NIP. ${data.nipPelaksana || '________________'}</div></div></div>${photoHtml}</div>`; }
+        function updatePreview() { document.getElementById('print-area').innerHTML = generatePreviewHTML(gatherFormData()); }
+        function printDocument() { openPrintWindow(generatePreviewHTML(gatherFormData())); }
+        
+        function openPrintWindow(content) { 
+            const printWindow = window.open('', '_blank'); 
+            printWindow.document.write(`<!DOCTYPE html><html><head><title>Cetak</title><link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet"><style>* { font-family: 'Source Sans Pro', sans-serif; } body { margin: 0; padding: 5mm 10mm 5mm 10mm; background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; } .doc-preview { background: white; font-size: 10pt; line-height: 1.4; } .doc-title { text-align: center; font-weight: 700; font-size: 12pt; margin-bottom: 30px; } .doc-section-title { font-weight: 700; margin: 12px 0 8px 0; font-size: 10pt; } .doc-info-row { display: flex; margin-bottom: 4px; font-size: 10pt; } .doc-info-label { width: 240px; flex-shrink: 0; } .doc-info-value { flex: 1; } .doc-table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9pt; } .doc-table th, .doc-table td { border: 1px solid black; padding: 4px; vertical-align: top; } .doc-table th { background-color: #f0f0f0 !important; -webkit-print-color-adjust: exact; text-align: center; font-weight: 600; } thead tr:nth-child(2) th { font-size: 8pt; padding: 2px; font-weight: normal; } .doc-table-header-date { background-color: #e8e8e8 !important; font-weight: 600; } .doc-signature-container { display: flex; justify-content: space-between; margin-top: 15px; } .doc-signature-box { text-align: center; width: 180px; font-size: 9pt; } .doc-signature-name { margin-top: 40px; font-weight: 600; text-decoration: underline; } .doc-photo-grid { display: flex; justify-content: center; gap: 10px; margin-top: 10px; } .doc-photo-grid img { width: 8cm; height: auto; border: 1px solid #ccc; } .doc-photo-grid.count-1 { display: block; text-align: center; } .doc-photo-grid.count-1 img { width: 11cm; } .stmt-doc { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; color: black; } .stmt-title { text-align: center; font-weight: bold; text-decoration: underline; margin: 0 0 20px 0; text-transform: uppercase; } .stmt-header-table { width: 100%; font-size: 12pt; margin-bottom: 20px; border-collapse: collapse; } .stmt-header-table td { padding: 0; vertical-align: top; border: none; line-height: 1.4; } .stmt-content { text-align: justify; margin-bottom: 15px; } .stmt-signature-wrapper { width: 50%; float: right; text-align: center; margin-top: 20px; } .stmt-label { margin-bottom: 2px; font-weight: bold; } .stmt-name-container { display: inline-block; margin-top: 40px; text-align: center; } .stmt-name-text { font-weight: bold; border-bottom: 1px solid black; display: inline; padding-bottom: 1px; } .stmt-details-below { margin-top: 5px; font-size: 11pt; line-height: 1.4; } .stmt-doc::after { content: ""; display: table; clear: both; }</style></head><body>${content}<script>setTimeout(function() { window.print(); window.close(); }, 500);<\/script></body></html>`); 
+            printWindow.document.close(); 
         }
 
         // --- History Management ---
-        function renderHistoryTable() {
-            const tbody = document.getElementById('historyTableBody');
-            const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]');
-
-            if (history.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" class="text-center text-gray-400 py-4">Belum ada data tersimpan.</td></tr>';
-            } else {
+        // MODIFIED: Added 'text-center' class to Tanggal column
+        function renderHistoryTable() { 
+            const tbody = document.getElementById('historyTableBody'); 
+            const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); 
+            if (history.length === 0) { 
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center text-gray-400 py-4">Belum ada data.</td></tr>'; 
+            } else { 
                 tbody.innerHTML = history.map((item, index) => `
                     <tr>
                         <td class="text-center">${index + 1}</td>
-                        <td>${item.tanggal || '-'}</td>
+                        <td class="text-center">${item.tanggal || '-'}</td>
                         <td>${item.pelaksana || '-'}</td>
                         <td>${item.tujuan || '-'}</td>
                         <td class="text-center">
                             <div class="action-icons">
-                                <button onclick="viewData(${index})" class="btn btn-outline btn-icon" title="View">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                                </button>
-                                <button onclick="editData(${index})" class="btn btn-primary btn-icon" title="Edit">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                                </button>
-                                <button onclick="printData(${index})" class="btn btn-success btn-icon" title="Cetak">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                                </button>
-                                <button onclick="deleteData(${index})" class="btn btn-danger btn-icon" title="Hapus">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                                </button>
+                                <button onclick="viewData(${index})" class="btn btn-outline btn-icon" title="View"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></button>
+                                <button onclick="editData(${index})" class="btn btn-primary btn-icon" title="Edit"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button>
+                                <button onclick="printData(${index})" class="btn btn-success btn-icon" title="Cetak"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg></button>
+                                <button onclick="deleteData(${index})" class="btn btn-danger btn-icon" title="Hapus"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join(''); 
+            } 
+        }
+        
+        function saveToHistory() { const data = gatherFormData(); if(!data.pelaksana || !data.tanggal) return alert("Isi minimal Pelaksana dan Tanggal."); let history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); history.unshift(data); localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(history)); alert("Laporan berhasil disimpan!"); }
+        function viewData(index) { const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); document.getElementById('viewModalContent').innerHTML = generatePreviewHTML(history[index]); document.getElementById('viewModal').style.display = 'flex'; }
+        function closeViewModal() { document.getElementById('viewModal').style.display = 'none'; }
+        function editData(index) { const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); const data = history[index]; history.splice(index, 1); localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(history)); populateForm(data); showPage('input'); window.scrollTo(0, 0); }
+        function printData(index) { const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); if(history[index]) openPrintWindow(generatePreviewHTML(history[index])); }
+        function deleteData(index) { if(confirm("Hapus data ini?")) { let history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); history.splice(index, 1); localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(history)); renderHistoryTable(); } }
+        
+        function resetForm() { 
+            if (confirm('Reset form laporan?')) { 
+                localStorage.removeItem(LS_DRAFT_KEY); 
+                photos = []; activities = []; activityCounter = 0; 
+                document.getElementById('pemberiTugas').value = 'Guswandi, S.ST'; 
+                document.getElementById('nipPemberi').value = '19700818 199412 1 001'; 
+                
+                // Reset Dropdown & NIP
+                updatePelaksanaDropdown(); 
+                document.getElementById('nipPelaksana').value = ''; 
+
+                document.getElementById('program').value = ''; 
+                document.getElementById('tujuan').value = ''; 
+                document.getElementById('tanggal').value = new Date().toISOString().split('T')[0]; 
+                document.getElementById('tanggalSelesai').value = ''; 
+                document.getElementById('dokumentasi').value = ''; 
+                document.getElementById('activityContainer').innerHTML = ''; 
+                renderPhotos(); 
+                addActivity(); 
+            } 
+        }
+
+        // --- EMPLOYEE LOGIC ---
+        function loadEmployees() {
+            const data = localStorage.getItem(LS_EMPLOYEE_KEY);
+            if (data) {
+                try {
+                    const parsed = JSON.parse(data);
+                    employees = parsed.employees || [];
+                    employeeCounter = parsed.counter || 0;
+                } catch(e) { employees = []; employeeCounter = 0; }
+            }
+            if (employees.length === 0) { initializeDefaultData(); }
+        }
+
+        function initializeDefaultData() {
+            employees = DEFAULT_EMPLOYEES.map((emp, index) => ({ id: index + 1, ...emp }));
+            employeeCounter = DEFAULT_EMPLOYEES.length;
+            saveEmployees();
+        }
+
+        function saveEmployees() {
+            localStorage.setItem(LS_EMPLOYEE_KEY, JSON.stringify({ employees, counter: employeeCounter }));
+        }
+
+        function changeEmployeePerPage(val) { employeeRowsPerPage = parseInt(val); employeeCurrentPage = 1; renderEmployeeTable(); }
+
+        // MODIFIED: Added 'text-center' class to NIP column
+        function renderEmployeeTable() {
+            const tbody = document.getElementById('employeeTableBody');
+            const infoSpan = document.getElementById('employeeInfo');
+            const paginationDiv = document.getElementById('employeePagination');
+            
+            const totalItems = employees.length;
+            const totalPages = Math.ceil(totalItems / employeeRowsPerPage);
+            const start = (employeeCurrentPage - 1) * employeeRowsPerPage;
+            const end = start + employeeRowsPerPage;
+            const paginatedItems = employees.slice(start, end);
+
+            if (totalItems === 0) {
+                infoSpan.textContent = "Tidak ada data.";
+            } else {
+                infoSpan.textContent = `Menampilkan ${start + 1} - ${Math.min(end, totalItems)} dari ${totalItems} data.`;
+            }
+
+            if (totalItems === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center text-gray-400 py-4">Belum ada data pegawai.</td></tr>';
+            } else {
+                tbody.innerHTML = paginatedItems.map((emp, index) => `
+                    <tr>
+                        <td class="text-center">${start + index + 1}</td>
+                        <td>${emp.nama}</td>
+                        <td class="text-center">${emp.nip}</td>
+                        <td>${emp.pangkat}</td>
+                        <td>${emp.jabatan}</td>
+                        <td class="text-center">
+                            <div class="action-icons">
+                                <button onclick="editEmployee(${emp.id})" class="btn btn-primary btn-icon" title="Edit"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button>
+                                <button onclick="deleteEmployee(${emp.id})" class="btn btn-danger btn-icon" title="Hapus"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
                             </div>
                         </td>
                     </tr>
                 `).join('');
             }
+            renderEmployeePagination(totalPages);
         }
 
-        function saveToHistory() {
-            const data = gatherFormData();
-            if(!data.pelaksana || !data.tanggal) {
-                return alert("Isi minimal Pelaksana dan Tanggal untuk menyimpan.");
+        function renderEmployeePagination(totalPages) {
+            const container = document.getElementById('employeePagination');
+            if (totalPages <= 1) { container.innerHTML = ''; return; }
+            let html = `<button onclick="goToEmployeePage(${employeeCurrentPage - 1})" class="btn btn-outline btn-icon" ${employeeCurrentPage === 1 ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>&laquo;</button>`;
+            
+            let startPage = Math.max(1, employeeCurrentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+            if(endPage - startPage < 4) startPage = Math.max(1, endPage - 4);
+
+            if (startPage > 1) html += `<button onclick="goToEmployeePage(1)" class="btn btn-outline btn-icon">1</button>`;
+            if (startPage > 2) html += `<span class="px-2 text-gray-400">...</span>`;
+
+            for (let i = startPage; i <= endPage; i++) {
+                const activeClass = i === employeeCurrentPage ? 'btn-primary' : 'btn-outline';
+                html += `<button onclick="goToEmployeePage(${i})" class="btn ${activeClass} btn-icon">${i}</button>`;
             }
 
-            let history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]');
-            history.unshift(data);
-            localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(history));
-            alert("Data berhasil disimpan!");
+            if (endPage < totalPages - 1) html += `<span class="px-2 text-gray-400">...</span>`;
+            if (endPage < totalPages) html += `<button onclick="goToEmployeePage(${totalPages})" class="btn btn-outline btn-icon">${totalPages}</button>`;
+
+            html += `<button onclick="goToEmployeePage(${employeeCurrentPage + 1})" class="btn btn-outline btn-icon" ${employeeCurrentPage === totalPages ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>&raquo;</button>`;
+            container.innerHTML = html;
         }
 
-        function viewData(index) {
-            const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]');
-            const data = history[index];
-            const modal = document.getElementById('viewModal');
-            const content = document.getElementById('viewModalContent');
-            
-            content.innerHTML = generatePreviewHTML(data);
-            modal.style.display = 'flex';
+        function goToEmployeePage(page) {
+            const totalPages = Math.ceil(employees.length / employeeRowsPerPage);
+            if (page < 1 || page > totalPages) return;
+            employeeCurrentPage = page;
+            renderEmployeeTable();
+            document.querySelector('.table-scroll-container').scrollTop = 0;
         }
 
-        function closeViewModal() {
-            document.getElementById('viewModal').style.display = 'none';
+        function openEmployeeModal(id = null) {
+            document.getElementById('emp-id').value = id || '';
+            if (id) {
+                const emp = employees.find(e => e.id === id);
+                document.getElementById('empModalTitle').textContent = "Edit Pegawai";
+                document.getElementById('emp-nama').value = emp.nama;
+                document.getElementById('emp-nip').value = emp.nip;
+                document.getElementById('emp-pangkat').value = emp.pangkat;
+                document.getElementById('emp-jabatan').value = emp.jabatan;
+            } else {
+                document.getElementById('empModalTitle').textContent = "Tambah Pegawai";
+                document.getElementById('emp-nama').value = '';
+                document.getElementById('emp-nip').value = '';
+                document.getElementById('emp-pangkat').value = '';
+                document.getElementById('emp-jabatan').value = '';
+            }
+            document.getElementById('employeeModal').style.display = 'flex';
         }
 
-        function editData(index) {
-            const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]');
-            const data = history[index];
-            
-            history.splice(index, 1);
-            localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(history));
+        function closeEmployeeModal() { document.getElementById('employeeModal').style.display = 'none'; }
 
-            populateForm(data);
-            showPage('input');
-            window.scrollTo(0, 0);
+        function saveEmployee() {
+            const id = document.getElementById('emp-id').value;
+            const payload = {
+                nama: document.getElementById('emp-nama').value,
+                nip: document.getElementById('emp-nip').value,
+                pangkat: document.getElementById('emp-pangkat').value,
+                jabatan: document.getElementById('emp-jabatan').value
+            };
+
+            if(!payload.nama) return alert("Nama wajib diisi.");
+
+            if (id) {
+                const index = employees.findIndex(e => e.id == id);
+                if (index !== -1) {
+                    employees[index] = { id: Number(id), ...payload };
+                }
+            } else {
+                employeeCounter++;
+                employees.push({ id: employeeCounter, ...payload });
+                employees.sort((a,b) => a.nama.localeCompare(b.nama));
+            }
+
+            saveEmployees();
+            closeEmployeeModal();
+            renderEmployeeTable();
+            updateStatementDropdown();
+            updatePelaksanaDropdown(); // Update input form dropdown as well
         }
 
-        function printData(index) {
-            const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]');
-            const data = history[index];
-            if(!data) return;
-            
-            const printContent = generatePreviewHTML(data);
-            openPrintWindow(printContent);
-        }
+        function editEmployee(id) { openEmployeeModal(id); }
 
-        function deleteData(index) {
-            if(confirm("Hapus data ini secara permanen?")) {
-                let history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]');
-                history.splice(index, 1);
-                localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(history));
-                renderHistoryTable();
+        function deleteEmployee(id) {
+            if(confirm("Hapus pegawai ini?")) {
+                employees = employees.filter(e => e.id !== id);
+                saveEmployees();
+                const totalPages = Math.ceil(employees.length / employeeRowsPerPage);
+                if (employeeCurrentPage > totalPages) employeeCurrentPage = totalPages || 1;
+                renderEmployeeTable();
+                updateStatementDropdown();
+                updatePelaksanaDropdown(); // Update input form dropdown
             }
         }
 
-        // --- Backup & Restore Logic ---
+        // --- STATEMENT LOGIC ---
+        function loadStatementDraft() {
+            const draft = localStorage.getItem(LS_STATEMENT_KEY);
+            if (draft) {
+                try {
+                    const d = JSON.parse(draft);
+                    document.getElementById('stmt-kota').value = d.kota || 'Pekanbaru';
+                    document.getElementById('stmt-tanggal').value = d.tanggal || new Date().toISOString().split('T')[0];
+                    document.getElementById('stmt-unit').value = d.unit || 'BPS Kota Pekanbaru';
+                    updateStatementDropdown();
+                    if(d.nama) {
+                        document.getElementById('stmt-nama').value = d.nama;
+                        handleEmployeeSelect(d.nama);
+                    }
+                } catch(e) {}
+            } else {
+                 document.getElementById('stmt-tanggal').value = new Date().toISOString().split('T')[0];
+                 document.getElementById('stmt-unit').value = 'BPS Kota Pekanbaru';
+                 updateStatementDropdown();
+            }
+        }
+
+        function saveStatementDraft() {
+            const data = {
+                kota: document.getElementById('stmt-kota').value,
+                tanggal: document.getElementById('stmt-tanggal').value,
+                nama: document.getElementById('stmt-nama').value,
+                unit: document.getElementById('stmt-unit').value
+            };
+            localStorage.setItem(LS_STATEMENT_KEY, JSON.stringify(data));
+        }
+
+        function updateStatementDropdown() {
+            const select = document.getElementById('stmt-nama');
+            const currentVal = select.value;
+            select.innerHTML = '<option value="">-- Pilih Pegawai --</option>';
+            const sortedEmployees = [...employees].sort((a, b) => a.nama.localeCompare(b.nama));
+            sortedEmployees.forEach(emp => {
+                select.innerHTML += `<option value="${emp.nama}">${emp.nama}</option>`;
+            });
+            if(sortedEmployees.some(e => e.nama === currentVal)) {
+                select.value = currentVal;
+            }
+        }
+
+        function handleEmployeeSelect(name) {
+            const emp = employees.find(e => e.nama === name);
+            if(emp) {
+                document.getElementById('stmt-nip').value = emp.nip;
+                document.getElementById('stmt-pangkat').value = emp.pangkat;
+                document.getElementById('stmt-jabatan').value = emp.jabatan;
+            } else {
+                document.getElementById('stmt-nip').value = '';
+                document.getElementById('stmt-pangkat').value = '';
+                document.getElementById('stmt-jabatan').value = '';
+            }
+            updateStatementPreview();
+        }
+
+        function updateStatementPreview() {
+            saveStatementDraft();
+            const d = {
+                kota: document.getElementById('stmt-kota').value || '______',
+                tanggal: document.getElementById('stmt-tanggal').value,
+                nama: document.getElementById('stmt-nama').value || '________________________',
+                nip: document.getElementById('stmt-nip').value || '________________________',
+                pangkat: document.getElementById('stmt-pangkat').value || '________________________',
+                jabatan: document.getElementById('stmt-jabatan').value || '________________________',
+                unit: document.getElementById('stmt-unit').value || 'BPS Kota Pekanbaru'
+            };
+
+            const dateStr = d.tanggal ? new Date(d.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '______';
+
+            const html = `
+                <div class="stmt-doc doc-preview">
+                    <div class="stmt-title" style="font-size: 20px; font-weight: bold;">SURAT PERNYATAAN</div>
+                   <p style="margin: 0 0 15px 0;">Yang bertanda tangan di bawah ini:</p>
+<table class="stmt-header-table" style="border-collapse: collapse; margin: 0;">
+  <tr><td style="width: 150px; padding: 4px 20px;">Nama</td><td style="padding: 4px 20px;">: ${d.nama}</td></tr>
+  <tr><td style="padding: 4px 20px;">NIP</td><td style="padding: 4px 20px;">: ${d.nip}</td></tr>
+  <tr><td style="padding: 4px 20px;">Pangkat/Golongan</td><td style="padding: 4px 20px;">: ${d.pangkat}</td></tr>
+  <tr><td style="padding: 4px 20px;">Jabatan</td><td style="padding: 4px 20px;">: ${d.jabatan}</td></tr>
+  <tr><td style="padding: 4px 20px;">Unit Kerja</td><td style="padding: 4px 20px;">: ${d.unit}</td></tr>
+</table>
+                    <p class="stmt-content">Menerangkan bahwa dalam rangka melaksanakan perjalanan dinas dalam kota untuk melaksanakan tugas kedinasan sesuai surat tugas, saya benar-benar tidak menggunakan kendaraan dinas.</p>
+                    <p class="stmt-content">Demikian pernyataan ini kami buat dengan sebenar-benarnya untuk dipergunakan sebagaimana mestinya. Apabila terdapat kekeliruan dalam pertanggungjawaban SPD dan mengakibatkan kerugian Negara, saya bersedia dituntut sesuai peraturan yang berlaku dan mengembalikan biaya transport lokal yang sudah terlanjur saya terima ke kas Negara.</p>
+                    <div class="stmt-signature-wrapper">
+                        <div>${d.kota}, ${dateStr}</div>
+                        <div class="stmt-label">Pelaksana Perjalanan Dinas</div>
+                        <div class="stmt-label" style="margin-bottom: 25px;">Dalam Kota</div>
+                        <div class="stmt-name-container"><span class="stmt-name-text">${d.nama}</span></div>
+                    </div>
+            `;
+            document.getElementById('print-area-statement').innerHTML = html;
+        }
+
+        function saveStatement() {
+            if(!document.getElementById('stmt-nama').value) return alert("Pilih pegawai terlebih dahulu.");
+            alert("Surat Pernyataan berhasil disimpan!");
+            resetStatementForm();
+        }
+
+        function resetStatementForm() {
+            localStorage.removeItem(LS_STATEMENT_KEY);
+            document.getElementById('stmt-nama').value = '';
+            document.getElementById('stmt-nip').value = '';
+            document.getElementById('stmt-pangkat').value = '';
+            document.getElementById('stmt-jabatan').value = '';
+            document.getElementById('stmt-tanggal').value = new Date().toISOString().split('T')[0];
+            updateStatementPreview();
+        }
+
+        function printStatement() { openPrintWindow(document.getElementById('print-area-statement').innerHTML); }
+
+        // --- Backup & Restore ---
         function exportAllData() {
             const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]');
             const draft = JSON.parse(localStorage.getItem(LS_DRAFT_KEY) || '{}');
+            const stmtDraft = JSON.parse(localStorage.getItem(LS_STATEMENT_KEY) || '{}');
+            const empDb = { employees, counter: employeeCounter };
             
-            const backupData = {
-                type: 'backup_perjadin',
-                exportDate: new Date().toISOString(),
-                history: history,
-                draft: draft
+            const backupData = { 
+                type: 'backup_all_v3', 
+                exportDate: new Date().toISOString(), 
+                laporan: { history, draft }, 
+                statement: { draft: stmtDraft },
+                employees: empDb
             };
-
             const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Backup_Laporan_${new Date().toISOString().slice(0,10)}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+            const a = document.createElement('a'); a.href = url; a.download = `Backup_Full_${new Date().toISOString().slice(0,10)}.json`;
+            document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
         }
 
         function loadDataFile(event) {
-            const file = event.target.files[0];
-            if (!file) return;
+            const file = event.target.files[0]; if (!file) return;
             const reader = new FileReader();
             reader.onload = (e) => {
                 try {
                     const data = JSON.parse(e.target.result);
-                    
-                    if (data.type === 'backup_perjadin' || Array.isArray(data)) {
-                        if(confirm("File ini adalah Backup Data. Pulihkan data ini? Data yang tersimpan akan digantikan dengan data backup.")) {
-                            restoreBackup(data);
-                            renderHistoryTable();
+                    if (data.type === 'backup_all_v3' || data.type === 'backup_all_v2' || data.type === 'backup_all_v1') {
+                        if(confirm("Pulihkan semua data (Laporan, Surat Pernyataan, Pegawai)?")) {
+                            if(data.laporan) {
+                                if(data.laporan.history) localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(data.laporan.history));
+                                if(data.laporan.draft) localStorage.setItem(LS_DRAFT_KEY, JSON.stringify(data.laporan.draft));
+                            }
+                            if(data.statement && data.statement.draft) localStorage.setItem(LS_STATEMENT_KEY, JSON.stringify(data.statement.draft));
+                            if(data.employees) {
+                                employees = data.employees.employees || [];
+                                employeeCounter = data.employees.counter || 0;
+                                saveEmployees();
+                            }
+                            location.reload();
                         }
-                    } else {
-                        populateForm(data);
-                        alert("Data laporan berhasil dimuat ke form.");
-                    }
-                } catch (err) { 
-                    alert("Gagal membaca file."); 
-                    console.error(err); 
-                }
+                    } else if (data.type === 'backup_perjadin' || Array.isArray(data)) {
+                        if(confirm("Pulihkan data Laporan Perjadin?")) {
+                            const h = Array.isArray(data) ? data : data.history;
+                            localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(h));
+                            if(data.draft) localStorage.setItem(LS_DRAFT_KEY, JSON.stringify(data.draft));
+                            loadDraft(); renderHistoryTable();
+                        }
+                    } else { populateForm(data); alert("Data laporan berhasil dimuat."); }
+                } catch (err) { alert("Gagal membaca file."); console.error(err); }
             };
             reader.readAsText(file);
             event.target.value = '';
-        }
-
-        function restoreBackup(backupData) {
-            try {
-                let historyToRestore = [];
-                
-                if (Array.isArray(backupData)) {
-                    historyToRestore = backupData;
-                } else if (backupData.type === 'backup_perjadin') {
-                    historyToRestore = backupData.history || [];
-                    if (backupData.draft) {
-                        localStorage.setItem(LS_DRAFT_KEY, JSON.stringify(backupData.draft));
-                    }
-                }
-
-                if(historyToRestore.length > 0) {
-                    localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(historyToRestore));
-                    loadDraft();
-                    alert(`Berhasil memulihkan ${historyToRestore.length} data.`);
-                } else {
-                    alert("File backup kosong.");
-                }
-            } catch (e) {
-                alert("Gagal memulihkan backup.");
-                console.error(e);
-            }
-        }
-
-        function resetForm() {
-            if (confirm('Reset form? Hanya isian di form ini yang akan dihapus. Data yang sudah tersimpan di "Data Perjadin" tidak akan terpengaruh.')) {
-                localStorage.removeItem(LS_DRAFT_KEY);
-                
-                photos = [];
-                activities = [];
-                activityCounter = 0;
-                
-                document.getElementById('pemberiTugas').value = 'Guswandi, S.ST';
-                document.getElementById('nipPemberi').value = '197008181994121001';
-                document.getElementById('pelaksana').value = '';
-                document.getElementById('nipPelaksana').value = '';
-                document.getElementById('program').value = '';
-                document.getElementById('tujuan').value = '';
-                document.getElementById('tanggal').value = new Date().toISOString().split('T')[0];
-                document.getElementById('tanggalSelesai').value = '';
-                document.getElementById('dokumentasi').value = '';
-                
-                document.getElementById('activityContainer').innerHTML = '';
-                renderPhotos();
-                addActivity();
-            }
         }
     </script>
 </body>
