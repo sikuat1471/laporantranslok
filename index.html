@@ -78,7 +78,7 @@
         .modal-body { padding: 1rem; overflow-y: auto; }
         .modal-footer { padding: 1rem; border-top: 1px solid #eee; background: #f8f9fa; display: flex; justify-content: end; gap: 0.5rem; }
 
-        /* Perubahan Tabel: Border Ditampilkan */
+        /* Table Styling: Border & Height for 10 rows (using em for precision) */
         .table-list { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
         .table-list th, .table-list td { padding: 8px 10px; vertical-align: middle; text-align: left; border: 1px solid #e5e7eb; }
         .table-list thead th { 
@@ -88,8 +88,9 @@
         .table-list tbody tr:nth-child(even) { background-color: #fafafa; }
         .table-list tbody tr:hover { background-color: #f0f7ff; }
         
+        /* Height calculation: approx 10 rows. 10 rows * ~3.6em (line-height + padding) ~= 36em */
         .table-scroll-container {
-            max-height: calc(100vh - 250px); min-height: 400px; overflow-y: auto;
+            height: 36em; overflow-y: auto;
             border: 1px solid #e5e7eb; border-radius: 6px; margin-bottom: 1rem; background: white;
         }
         
@@ -148,7 +149,9 @@
         .overtime-identity-table { width: 100%; font-size: 12pt; margin-bottom: 15px; border-collapse: collapse; }
         .overtime-identity-table td { padding: 1px 0; vertical-align: top; border: none; }
         .overtime-label { width: 150px; }
-        .overtime-content { text-align: justify; margin-bottom: 10px; text-indent: 40px; }
+        
+        /* Justify Content for Overtime */
+        .overtime-content { text-align: justify; text-justify: inter-word; margin-bottom: 10px; text-indent: 40px; }
         
         /* Box Uraian Pekerjaan */
         .work-box { border: 1.5px solid black; padding: 10px 15px; margin: 15px 0; border-radius: 4px; background: white; }
@@ -444,7 +447,6 @@
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label">Kepala</label>
-                                    <!-- Diubah menjadi text input readonly -->
                                     <input type="text" id="ovt-kepala" class="form-input bg-gray-100" value="Guswandi, SST" readonly>
                                 </div>
                             </div>
@@ -714,7 +716,7 @@
         
         function openPrintWindow(content) { 
             const printWindow = window.open('', '_blank'); 
-            printWindow.document.write(`<!DOCTYPE html><html><head><title>Cetak</title><link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet"><style>* { font-family: 'Source Sans Pro', sans-serif; } body { margin: 0; padding: 0; background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; } .doc-preview { background: white; font-size: 10pt; line-height: 1.4; padding: 5mm 9mm 5mm 9mm; } .doc-title { text-align: center; font-weight: 700; font-size: 12pt; margin-bottom: 30px; } .doc-section-title { font-weight: 700; margin: 12px 0 8px 0; font-size: 10pt; } .doc-info-row { display: flex; margin-bottom: 4px; font-size: 10pt; margin-left: 20px; } .doc-info-number { width: 15px; } .doc-info-label { width: 280px; flex-shrink: 0; } .doc-info-separator { width: 10px; } .doc-info-value { flex: 1; } .doc-table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9pt; } .doc-table th, .doc-table td { border: 1px solid black; padding: 4px; vertical-align: top; } .doc-table th { background-color: #f0f0f0 !important; -webkit-print-color-adjust: exact; text-align: center; font-weight: 600; } thead tr:nth-child(2) th { font-size: 8pt; padding: 2px; font-weight: normal; } .doc-table-header-date { background-color: #e8e8e8 !important; font-weight: 600; } .doc-signature-container { display: flex; justify-content: space-between; margin-top: 15px; } .doc-signature-box { text-align: center; width: 180px; font-size: 9pt; } .doc-signature-name { margin-top: 40px; font-weight: 600; text-decoration: underline; } .doc-photo-grid { display: flex; justify-content: center; gap: 10px; margin-top: 10px; } .doc-photo-grid img { width: 8cm; height: auto; border: 1px solid #ccc; } .doc-photo-grid.count-1 { display: block; text-align: center; } .doc-photo-grid.count-1 img { width: 11cm; } .stmt-doc { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; color: black; } .stmt-title { text-align: center; font-weight: bold; text-decoration: underline; margin: 0 0 20px 0; text-transform: uppercase; } .stmt-header-table { width: 100%; font-size: 12pt; margin-bottom: 20px; border-collapse: collapse; } .stmt-header-table td { padding: 0; vertical-align: top; border: none; line-height: 1.4; } .stmt-content { text-align: justify; margin-bottom: 15px; } .stmt-signature-wrapper { width: 50%; float: right; text-align: center; margin-top: 20px; } .stmt-label { margin-bottom: 2px; font-weight: bold; } .stmt-name-container { display: inline-block; margin-top: 40px; text-align: center; } .stmt-name-text { font-weight: bold; border-bottom: 1px solid black; display: inline; padding-bottom: 1px; } .stmt-details-below { margin-top: 5px; font-size: 11pt; line-height: 1.4; } .stmt-doc::after { content: ""; display: table; clear: both; } .overtime-doc { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; color: black; } .overtime-header-container { display: flex; align-items: flex-start; margin-bottom: 15px; border-bottom: 2px solid black; padding-bottom: 10px; } .overtime-logo { width: 70px; margin-right: 15px; } .overtime-header-text { text-align: left; flex: 1; } .overtime-header-institution { font-weight: bold; font-size: 14pt; line-height: 1.2; } .overtime-header-unit { font-size: 12pt; line-height: 1.2; } .overtime-identity-table { width: 100%; font-size: 12pt; margin-bottom: 15px; border-collapse: collapse; } .overtime-identity-table td { padding: 1px 0; vertical-align: top; border: none; } .overtime-label { width: 150px; } .overtime-content { text-align: justify; margin-bottom: 10px; text-indent: 40px; } .work-box { border: 1.5px solid black; padding: 10px 15px; margin: 15px 0; border-radius: 4px; background: white; } .overtime-work-title { font-weight: bold; text-align: center; margin-bottom: 8px; font-size: 12pt; } .overtime-work-list { margin: 0; padding-left: 20px; } .overtime-signature-container { display: flex; justify-content: space-between; margin-top: 30px; width: 100%; } .overtime-signature-box { text-align: center; width: 45%; }</style></head><body>${content}<script>setTimeout(function() { window.print(); window.close(); }, 500);<\/script></body></html>`); 
+            printWindow.document.write(`<!DOCTYPE html><html><head><title>Cetak</title><link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet"><style>* { font-family: 'Source Sans Pro', sans-serif; } body { margin: 0; padding: 0; background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; } .doc-preview { background: white; font-size: 10pt; line-height: 1.4; padding: 5mm 9mm 5mm 9mm; } .doc-title { text-align: center; font-weight: 700; font-size: 12pt; margin-bottom: 30px; } .doc-section-title { font-weight: 700; margin: 12px 0 8px 0; font-size: 10pt; } .doc-info-row { display: flex; margin-bottom: 4px; font-size: 10pt; margin-left: 20px; } .doc-info-number { width: 15px; } .doc-info-label { width: 280px; flex-shrink: 0; } .doc-info-separator { width: 10px; } .doc-info-value { flex: 1; } .doc-table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9pt; } .doc-table th, .doc-table td { border: 1px solid black; padding: 4px; vertical-align: top; } .doc-table th { background-color: #f0f0f0 !important; -webkit-print-color-adjust: exact; text-align: center; font-weight: 600; } thead tr:nth-child(2) th { font-size: 8pt; padding: 2px; font-weight: normal; } .doc-table-header-date { background-color: #e8e8e8 !important; font-weight: 600; } .doc-signature-container { display: flex; justify-content: space-between; margin-top: 15px; } .doc-signature-box { text-align: center; width: 180px; font-size: 9pt; } .doc-signature-name { margin-top: 40px; font-weight: 600; text-decoration: underline; } .doc-photo-grid { display: flex; justify-content: center; gap: 10px; margin-top: 10px; } .doc-photo-grid img { width: 8cm; height: auto; border: 1px solid #ccc; } .doc-photo-grid.count-1 { display: block; text-align: center; } .doc-photo-grid.count-1 img { width: 11cm; } .stmt-doc { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; color: black; } .stmt-title { text-align: center; font-weight: bold; text-decoration: underline; margin: 0 0 20px 0; text-transform: uppercase; } .stmt-header-table { width: 100%; font-size: 12pt; margin-bottom: 20px; border-collapse: collapse; } .stmt-header-table td { padding: 0; vertical-align: top; border: none; line-height: 1.4; } .stmt-content { text-align: justify; margin-bottom: 15px; } .stmt-signature-wrapper { width: 50%; float: right; text-align: center; margin-top: 20px; } .stmt-label { margin-bottom: 2px; font-weight: bold; } .stmt-name-container { display: inline-block; margin-top: 40px; text-align: center; } .stmt-name-text { font-weight: bold; border-bottom: 1px solid black; display: inline; padding-bottom: 1px; } .stmt-details-below { margin-top: 5px; font-size: 11pt; line-height: 1.4; } .stmt-doc::after { content: ""; display: table; clear: both; } .overtime-doc { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; color: black; } .overtime-header-container { display: flex; align-items: flex-start; margin-bottom: 15px; border-bottom: 2px solid black; padding-bottom: 10px; } .overtime-logo { width: 70px; margin-right: 15px; } .overtime-header-text { text-align: left; flex: 1; } .overtime-header-institution { font-weight: bold; font-size: 14pt; line-height: 1.2; } .overtime-header-unit { font-size: 12pt; line-height: 1.2; } .overtime-identity-table { width: 100%; font-size: 12pt; margin-bottom: 15px; border-collapse: collapse; } .overtime-identity-table td { padding: 1px 0; vertical-align: top; border: none; } .overtime-label { width: 150px; } .overtime-content { text-align: justify; text-justify: inter-word; margin-bottom: 10px; text-indent: 40px; } .work-box { border: 1.5px solid black; padding: 10px 15px; margin: 15px 0; border-radius: 4px; background: white; } .overtime-work-title { font-weight: bold; text-align: center; margin-bottom: 8px; font-size: 12pt; } .overtime-work-list { margin: 0; padding-left: 20px; } .overtime-signature-container { display: flex; justify-content: space-between; margin-top: 30px; width: 100%; } .overtime-signature-box { text-align: center; width: 45%; }</style></head><body>${content}<script>setTimeout(function() { window.print(); window.close(); }, 500);<\/script></body></html>`); 
             printWindow.document.close(); 
         }
 
@@ -772,7 +774,6 @@
                     if(d.jamSelesai) document.getElementById('ovt-jam-selesai').value = d.jamSelesai;
                     if(d.menitSelesai) document.getElementById('ovt-menit-selesai').value = d.menitSelesai;
                     
-                    // Field Kepala di-set manual
                     document.getElementById('ovt-kepala').value = "Guswandi, SST";
 
                     updateOvertimeDropdowns();
@@ -843,7 +844,7 @@
                 menitMulai: document.getElementById('ovt-menit-mulai').value,
                 jamSelesai: document.getElementById('ovt-jam-selesai').value,
                 menitSelesai: document.getElementById('ovt-menit-selesai').value,
-                kepalaNama: document.getElementById('ovt-kepala').value // Ambil dari input text
+                kepalaNama: document.getElementById('ovt-kepala').value
             };
             localStorage.setItem(LS_OVERTIME_KEY, JSON.stringify(d));
         }
@@ -864,12 +865,11 @@
                 jamSelesai: document.getElementById('ovt-jam-selesai').value || '00',
                 menitSelesai: document.getElementById('ovt-menit-selesai').value || '00',
                 uraian: document.getElementById('ovt-uraian').value || '-',
-                kepalaNama: document.getElementById('ovt-kepala').value || '-' // Dari input text
+                kepalaNama: document.getElementById('ovt-kepala').value || '-'
             };
 
-            // Cari NIP Kepala dari database berdasarkan nama di input text
             const kepalaEmp = employees.find(e => e.nama === d.kepalaNama);
-            const kepalaNip = kepalaEmp ? kepalaEmp.nip : '19700818 199412 1 001'; // Default Guswandi
+            const kepalaNip = kepalaEmp ? kepalaEmp.nip : '19700818 199412 1 001';
             
             const start = parseInt(d.jamMulai) * 60 + parseInt(d.menitMulai);
             let end = parseInt(d.jamSelesai) * 60 + parseInt(d.menitSelesai);
@@ -935,7 +935,7 @@
                         Tanggal ${dateStr} dari Pukul ${d.jamMulai}:${d.menitMulai} - ${d.jamSelesai}:${d.menitSelesai} WIB (${durationText}), dengan uraian pekerjaan sebagai berikut:
                     </div>
                     
-                    <div class="work-box">
+                    <div class="">
                         <div class="overtime-work-title"></div>
                         <ul class="overtime-work-list">
                             ${uraianHtml}
@@ -1056,7 +1056,6 @@
             localStorage.setItem(LS_OVERTIME_HISTORY_KEY, JSON.stringify(history));
             alert("Laporan lembur berhasil disimpan!");
             
-            // Reset form after save
             resetOvertimeForm();
             renderOvertimeHistoryTable();
         }
@@ -1117,7 +1116,7 @@
                         Tanggal ${dateStr} dari Pukul ${d.jamMulai || '00'}:${d.menitMulai || '00'} - ${d.jamSelesai || '00'}:${d.menitSelesai || '00'} WIB (${durationText}), dengan uraian pekerjaan sebagai berikut:
                     </div>
                     
-                    <div class="work-box">
+                    <div class="">
                         <div class="overtime-work-title"></div>
                         <ul class="overtime-work-list">${uraianHtml}</ul>
                     </div>
@@ -1147,6 +1146,7 @@
         }
         function closeViewOvertimeModal() { document.getElementById('viewOvertimeModal').style.display = 'none'; }
 
+        // PERBAIKAN: Langsung mengisi form tanpa refresh
         function editOvertimeData(index) {
             const history = JSON.parse(localStorage.getItem(LS_OVERTIME_HISTORY_KEY) || '[]');
             const data = history[index];
@@ -1155,11 +1155,28 @@
             history.splice(index, 1);
             localStorage.setItem(LS_OVERTIME_HISTORY_KEY, JSON.stringify(history));
             
-            // Simpan data yang akan diedit ke draft
-            localStorage.setItem(LS_OVERTIME_KEY, JSON.stringify(data));
+            // Update tabel history di background
+            renderOvertimeHistoryTable();
             
-            // Langsung pindah ke halaman input dan isi form
+            // Isi form secara langsung (Hard Fill)
+            document.getElementById('ovt-nama').value = data.nama || '';
+            handleOvertimeEmployeeSelect(data.nama);
+            document.getElementById('ovt-kota').value = data.kota || 'Pekanbaru';
+            document.getElementById('ovt-tanggal').value = data.tanggal || '';
+            document.getElementById('ovt-tanggal-cetak').value = data.tanggalCetak || new Date().toISOString().split('T')[0];
+            document.getElementById('ovt-uraian').value = data.uraian || '';
+            document.getElementById('ovt-kepala').value = data.kepalaNama || 'Guswandi, SST';
+            
+            if(data.jamMulai) document.getElementById('ovt-jam-mulai').value = data.jamMulai;
+            if(data.menitMulai) document.getElementById('ovt-menit-mulai').value = data.menitMulai;
+            if(data.jamSelesai) document.getElementById('ovt-jam-selesai').value = data.jamSelesai;
+            if(data.menitSelesai) document.getElementById('ovt-menit-selesai').value = data.menitSelesai;
+
+            // Pindah halaman
             showPage('overtime');
+            
+            // Trigger preview update
+            updateOvertimePreview();
         }
 
         function printOvertimeData(index) {
@@ -1189,13 +1206,11 @@
             document.getElementById('ovt-kota').value = 'Pekanbaru';
             document.getElementById('ovt-tanggal-cetak').value = new Date().toISOString().split('T')[0];
             
-            // Reset time dropdowns
              document.getElementById('ovt-jam-mulai').selectedIndex = 0;
              document.getElementById('ovt-menit-mulai').selectedIndex = 0;
              document.getElementById('ovt-jam-selesai').selectedIndex = 0;
              document.getElementById('ovt-menit-selesai').selectedIndex = 0;
              
-             // Reset Kepala ke default
              document.getElementById('ovt-kepala').value = "Guswandi, SST";
              
              updateOvertimePreview();
