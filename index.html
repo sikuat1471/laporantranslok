@@ -78,13 +78,13 @@
         .modal-body { padding: 1rem; overflow-y: auto; }
         .modal-footer { padding: 1rem; border-top: 1px solid #eee; background: #f8f9fa; display: flex; justify-content: end; gap: 0.5rem; }
 
+        /* Perubahan Tabel: Border Ditampilkan */
         .table-list { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        .table-list th, .table-list td { padding: 8px 10px; vertical-align: middle; text-align: left; }
+        .table-list th, .table-list td { padding: 8px 10px; vertical-align: middle; text-align: left; border: 1px solid #e5e7eb; }
         .table-list thead th { 
             position: sticky; top: 0; z-index: 10; background-color: #f8f9fa; 
-            font-weight: 600; text-align: center; border-bottom: 2px solid #e5e7eb;
+            font-weight: 600; text-align: center; border-bottom: 2px solid #d1d5db;
         }
-        .table-list tbody tr { border-bottom: 1px solid #f3f4f6; transition: background 0.2s; }
         .table-list tbody tr:nth-child(even) { background-color: #fafafa; }
         .table-list tbody tr:hover { background-color: #f0f7ff; }
         
@@ -125,6 +125,19 @@
         .page-hidden { display: none; }
         .screen-footer { position: fixed; bottom: 10px; left: 20px; font-size: 0.7rem; color: rgba(0, 0, 0, 0.25); font-style: italic; z-index: 100; pointer-events: none; user-select: none; }
 
+        /* Statement Styles */
+        .stmt-doc { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.5; color: black; }
+        .stmt-title { text-align: center; font-weight: bold; text-decoration: underline; margin: 0 0 20px 0; text-transform: uppercase; font-size: 12pt; }
+        .stmt-header-table { width: 100%; font-size: 12pt; margin-bottom: 20px; border-collapse: collapse; }
+        .stmt-header-table td { padding: 0; vertical-align: top; border: none; line-height: 1.4; }
+        .stmt-content { text-align: justify; margin-bottom: 15px; }
+        .stmt-signature-wrapper { width: 50%; float: right; text-align: center; margin-top: 20px; }
+        .stmt-label { margin-bottom: 2px; font-weight: bold; }
+        .stmt-name-container { display: inline-block; margin-top: 40px; text-align: center; }
+        .stmt-name-text { font-weight: bold; border-bottom: 1px solid black; display: inline; padding-bottom: 1px; }
+        .stmt-details-below { margin-top: 5px; font-size: 11pt; line-height: 1.4; }
+        .stmt-doc::after { content: ""; display: table; clear: both; }
+        
         /* Overtime Styles */
         .overtime-doc { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.5; color: black; }
         .overtime-header-container { display: flex; align-items: flex-start; margin-bottom: 15px; border-bottom: 2px solid black; padding-bottom: 10px; }
@@ -135,25 +148,15 @@
         .overtime-identity-table { width: 100%; font-size: 12pt; margin-bottom: 15px; border-collapse: collapse; }
         .overtime-identity-table td { padding: 1px 0; vertical-align: top; border: none; }
         .overtime-label { width: 150px; }
+        .overtime-content { text-align: justify; margin-bottom: 10px; text-indent: 40px; }
         
-        /* Justify Content Class */
-        .stmt-content { text-align: justify; margin-bottom: 15px; }
-        
+        /* Box Uraian Pekerjaan */
         .work-box { border: 1.5px solid black; padding: 10px 15px; margin: 15px 0; border-radius: 4px; background: white; }
+        .overtime-work-title { font-weight: bold; text-align: center; margin-bottom: 8px; font-size: 12pt; }
         .overtime-work-list { margin: 0; padding-left: 20px; }
+        
         .overtime-signature-container { display: flex; justify-content: space-between; margin-top: 30px; width: 100%; }
         .overtime-signature-box { text-align: center; width: 45%; }
-        
-        /* Statement Styles */
-        .stmt-doc { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.5; color: black; }
-        .stmt-title { text-align: center; font-weight: bold; text-decoration: underline; margin: 0 0 20px 0; text-transform: uppercase; font-size: 12pt; }
-        .stmt-header-table { width: 100%; font-size: 12pt; margin-bottom: 20px; border-collapse: collapse; }
-        .stmt-header-table td { padding: 0; vertical-align: top; border: none; line-height: 1.4; }
-        .stmt-signature-wrapper { width: 50%; float: right; text-align: center; margin-top: 20px; }
-        .stmt-label { margin-bottom: 2px; font-weight: bold; }
-        .stmt-name-container { display: inline-block; margin-top: 40px; text-align: center; }
-        .stmt-name-text { font-weight: bold; border-bottom: 1px solid black; display: inline; padding-bottom: 1px; }
-        .stmt-doc::after { content: ""; display: table; clear: both; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -288,6 +291,19 @@
                     <h2 class="text-xl font-bold text-gray-800">Riwayat Data Perjalanan Dinas</h2>
                     <button onclick="showPage('input')" class="btn btn-gray text-xs">Kembali</button>
                 </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 gap-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-600">Tampilkan</span>
+                        <select id="historyPerPageSelect" class="form-input text-xs py-1 w-20" onchange="changeHistoryPerPage(this.value)">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select>
+                        <span class="text-xs text-gray-600">data</span>
+                    </div>
+                    <div id="historyInfo" class="text-xs text-gray-500"></div>
+                </div>
                 <div class="table-scroll-container">
                     <table class="table-list">
                         <thead><tr><th style="width: 30px;">No</th><th>Tanggal</th><th>Pelaksana</th><th>Tujuan</th><th style="width: 140px;">Aksi</th></tr></thead>
@@ -305,6 +321,19 @@
                     <h2 class="text-xl font-bold text-gray-800">Riwayat Data Lembur</h2>
                     <button onclick="showPage('overtime')" class="btn btn-primary text-xs">+ Input Baru</button>
                 </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 gap-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-600">Tampilkan</span>
+                        <select id="overtimeHistoryPerPageSelect" class="form-input text-xs py-1 w-20" onchange="changeOvertimeHistoryPerPage(this.value)">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select>
+                        <span class="text-xs text-gray-600">data</span>
+                    </div>
+                    <div id="overtimeHistoryInfo" class="text-xs text-gray-500"></div>
+                </div>
                 <div class="table-scroll-container">
                     <table class="table-list">
                         <thead><tr><th style="width: 30px;">No</th><th>Tanggal Lembur</th><th>Pelaksana</th><th>Uraian Pekerjaan</th><th style="width: 140px;">Aksi</th></tr></thead>
@@ -320,22 +349,27 @@
             <div class="main-grid">
                 <div>
                     <div class="form-card">
-                        <h2 class="section-title">Input Surat Pernyataan</h2>
+                        <h2 class="section-title">Input Surat Pernyataan Tidak Menggunakan Kendaraan Dinas</h2>
                         <div class="space-y-3">
-                             <div class="grid grid-cols-2 gap-2">
+                            <div class="grid grid-cols-2 gap-2">
                                 <div><label class="form-label">Kota</label><input type="text" id="stmt-kota" class="form-input" value="Pekanbaru" oninput="updateStatementPreview()"></div>
                                 <div><label class="form-label">Tanggal</label><input type="date" id="stmt-tanggal" class="form-input" oninput="updateStatementPreview()"></div>
                             </div>
-                            <div>
-                                <label class="form-label">Nama Pegawai</label>
-                                <select id="stmt-nama" class="form-input" onchange="handleEmployeeSelect(this.value)">
-                                    <option value="">-- Pilih Pegawai --</option>
-                                </select>
+                            <div class="border-t pt-3 mt-3">
+                                <h3 class="font-semibold text-sm text-gray-700 mb-2">Identitas Yang Menyatakan</h3>
+                                <div class="space-y-2">
+                                    <div>
+                                        <label class="form-label">Nama Pegawai</label>
+                                        <select id="stmt-nama" class="form-input" onchange="handleEmployeeSelect(this.value)">
+                                            <option value="">-- Pilih Pegawai --</option>
+                                        </select>
+                                    </div>
+                                    <div><label class="form-label">NIP</label><input type="text" id="stmt-nip" class="form-input bg-gray-100" readonly></div>
+                                    <div><label class="form-label">Pangkat/Golongan</label><input type="text" id="stmt-pangkat" class="form-input bg-gray-100" readonly></div>
+                                    <div><label class="form-label">Jabatan</label><input type="text" id="stmt-jabatan" class="form-input bg-gray-100" readonly></div>
+                                    <div><label class="form-label">Unit Kerja</label><input type="text" id="stmt-unit" class="form-input" value="BPS Kota Pekanbaru" oninput="updateStatementPreview()"></div>
+                                </div>
                             </div>
-                            <div><label class="form-label">NIP</label><input type="text" id="stmt-nip" class="form-input bg-gray-100" readonly></div>
-                            <div><label class="form-label">Pangkat/Golongan</label><input type="text" id="stmt-pangkat" class="form-input bg-gray-100" readonly></div>
-                            <div><label class="form-label">Jabatan</label><input type="text" id="stmt-jabatan" class="form-input bg-gray-100" readonly></div>
-                            <div><label class="form-label">Unit Kerja</label><input type="text" id="stmt-unit" class="form-input" value="BPS Kota Pekanbaru" oninput="updateStatementPreview()"></div>
                         </div>
                     </div>
                 </div>
@@ -410,9 +444,8 @@
                                 </div>
                                 <div class="mt-2">
                                     <label class="form-label">Kepala</label>
-                                    <select id="ovt-kepala" class="form-input" onchange="updateOvertimePreview()">
-                                        <option value="">-- Pilih Kepala --</option>
-                                    </select>
+                                    <!-- Diubah menjadi text input readonly -->
+                                    <input type="text" id="ovt-kepala" class="form-input bg-gray-100" value="Guswandi, SST" readonly>
                                 </div>
                             </div>
                         </div>
@@ -438,6 +471,19 @@
                         <button onclick="showPage('input')" class="btn btn-gray text-xs">Kembali</button>
                     </div>
                 </div>
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 gap-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-600">Tampilkan</span>
+                        <select id="employeePerPageSelect" class="form-input text-xs py-1 w-20" onchange="changeEmployeePerPage(this.value)">
+                            <option value="10" selected>10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="50">50</option>
+                        </select>
+                        <span class="text-xs text-gray-600">data</span>
+                    </div>
+                    <div id="employeeInfo" class="text-xs text-gray-500"></div>
+                </div>
                 <div class="table-scroll-container">
                     <table class="table-list">
                         <thead>
@@ -459,7 +505,7 @@
 
     </div>
 
-    <!-- Modals -->
+    <!-- Modal View Laporan -->
     <div id="viewModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 800px;">
             <div class="modal-header">
@@ -470,6 +516,7 @@
         </div>
     </div>
     
+    <!-- Modal View Overtime -->
     <div id="viewOvertimeModal" class="modal-overlay">
         <div class="modal-content" style="max-width: 800px;">
             <div class="modal-header">
@@ -480,6 +527,7 @@
         </div>
     </div>
 
+    <!-- Modal Input Pegawai -->
     <div id="employeeModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -503,18 +551,63 @@
     </div>
 
     <script>
-        // --- DEFAULT DATA & STATE ---
+        // --- DEFAULT EMPLOYEE DATA (SEEDER) ---
         const DEFAULT_EMPLOYEES = [
-            { nama: "Guswandi, SST", nip: "19700818 199412 1 001", pangkat: "Pembina Tingkat I IV/b", jabatan: "Kepala" },
+            { nama: "Alfandra", nip: "19860321 202521 1 034", pangkat: "Pemula V", jabatan: "Staf" },
+            { nama: "Arie Nurlaela, A.Md., S.Stat", nip: "19790204 200502 2 002", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
             { nama: "Aulia Hasif, SST, M.Si", nip: "19820616 200701 1 009", pangkat: "Pembina IV/a", jabatan: "Statistisi Ahli Muda" },
-            { nama: "Danang Gunawan, A.Md", nip: "19851210 200902 1 009", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Mahir" }
+            { nama: "Benny Dwi Kifana, ST, M.Si", nip: "19881223 201403 1 002", pangkat: "Penata Tingkat I III/d", jabatan: "Analis Pengelolaan Keuangan APBN Ahli Muda" },
+            { nama: "Callista Luthfiyah Cahyani, S.Tr.Stat", nip: "20020105 202412 2 003", pangkat: "Penata Muda III/a", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Danang Gunawan, A.Md", nip: "19851210 200902 1 009", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Mahir" },
+            { nama: "Desi Damaiyanti, SST, M.E", nip: "19860920 200801 2 002", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Dessy Syukriya Aryati, SST", nip: "19900526 201311 2 001", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Erika Sari, SST", nip: "19910315 201311 2 001", pangkat: "Penata III/c", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Erlius Natalis Bancin", nip: "1974111 2199803 1 001", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Fungsional Umum" },
+            { nama: "Erwhin Widyanto, S.E", nip: "19821218 200604 1 001", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Fajar Maulinda, SST, M.E.K.K", nip: "19861103 200902 2 009", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Guswandi, SST", nip: "19700818 199412 1 001", pangkat: "Pembina Tingkat I IV/b", jabatan: "Kepala" },
+            { nama: "Hari Pebriyanto", nip: "19860222 200604 1 004", pangkat: "Penata Muda III/a", jabatan: "Pranata Keuangan APBN Terampil" },
+            { nama: "I Putu Diastudi", nip: "19750427 200710 1 001", pangkat: "Penata Muda III/a", jabatan: "Fungsional Umum" },
+            { nama: "Ifra Warnita, SST, M.E.K.K", nip: "19860310 200902 2 005", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Imelda Andriani, SST", nip: "19890829 201211 2 001", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Ira Maharisa, SE, MM", nip: "19860425 200502 2 001", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Lola Netty, S.Stat", nip: "19870215 201003 2 002", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Lutfhi Sundoro, S.E", nip: "19970918 202521 1 024", pangkat: "Mahir IX", jabatan: "Staf" },
+            { nama: "Mangatur Manurung, S.Si, M.Si", nip: "19720221 200212 1 002", pangkat: "Pembina IV/a", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Marlis, SE", nip: "19720703 200502 1 001", pangkat: "Penata III/c", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Meita Komalasari, S.ST, M.Si", nip: "19790501 200012 2 002", pangkat: "Pembina Tingkat I IV/b", jabatan: "Statistisi Ahli Madya" },
+            { nama: "Musmuliadi, SE", nip: "19760612 200901 1 004", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Mutiara Rintia Asnuri Putri, SST", nip: "19950308 201802 2 001", pangkat: "Penata III/c", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Nasrul Saputra, SST", nip: "19881126 201211 1 001", pangkat: "Penata Tingkat I III/d", jabatan: "Pranata Komputer Ahli Muda" },
+            { nama: "Nia Feriwati, S.Pt", nip: "19690202 200701 2 003", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Pranata Keuangan APBN Mahir" },
+            { nama: "Noliza, SST", nip: "19870219 200912 2 005", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Muda" },
+            { nama: "Nurul Handayani, S.Tr.Stat", nip: "19990303 202201 2 002", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Pranata Komputer Ahli Pertama" },
+            { nama: "Oktaviani Armina", nip: "19861012 200604 2 002", pangkat: "Penata Muda III/a", jabatan: "Fungsional Umum" },
+            { nama: "Poppi Rahma Nanda, S.Tr.Stat", nip: "19960721 201912 2 001", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Razaliana, S.Sos", nip: "19790105 200701 1 001", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Reny Roswita Nazar, S.Stat", nip: "19960727 201903 2 001", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Rizka Heryanti, S.Tr.Stat", nip: "19960919 201901 2 003", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Rudiarman, SE", nip: "19730103 200212 1 003", pangkat: "Penata Tingkat I III/d", jabatan: "Statistisi Ahli Pertama" },
+            { nama: "Rushi Dayat Tullah", nip: "19951029 202521 1 027", pangkat: "Pemula V", jabatan: "Staf" },
+            { nama: "Sofi Zamzanah, S.Tr.Stat", nip: "20010225 202603 2 001", pangkat: "Penata Muda III/a", jabatan: "Staf" },
+            { nama: "Suci Dwi Martiani, SST, M.I.Kom", nip: "19870304 200902 2 003", pangkat: "Pembina IV/a", jabatan: "Staf" },
+            { nama: "Sugiman, S.Kom", nip: "19740505 200502 1 001", pangkat: "Penata Tingkat I III/d", jabatan: "Pranata Komputer Ahli Muda" },
+            { nama: "Sumarlin, A.Md", nip: "19850706 200902 1 008", pangkat: "Penata Muda Tingkat I III/b", jabatan: "Pranata Keuangan APBN Mahir" },
+            { nama: "Ujang Nurhidayat, S.Kom", nip: "19811214 201012 1 001", pangatan: "Penata Muda Tingkat I III/b", jabatan: "Pranata Komputer Ahli Pertama" },
+            { nama: "Wahyu Adhiputra, SST", nip: "19861109 201012 1 008", pangkat: "Penata Tingkat I III/d", jabatan: "Kepala Subbagian Umum" },
+            { nama: "Yuli Hairani, SST", nip: "19940709 201701 2 002", pangkat: "Penata III/c", jabatan: "Statistisi Ahli Pertama" }
         ];
 
+        // State
         let activities = []; let activityCounter = 0; let photos = []; let autoSaveTimeout = null;
         let employees = []; let employeeCounter = 0;
-        let historyCurrentPage = 1; let historyRowsPerPage = 10;
-        let employeeCurrentPage = 1; let employeeRowsPerPage = 10;
-        let overtimeHistoryCurrentPage = 1; let overtimeHistoryRowsPerPage = 10;
+        
+        let historyCurrentPage = 1;
+        let historyRowsPerPage = 10;
+        let employeeCurrentPage = 1;
+        let employeeRowsPerPage = 10;
+        let overtimeHistoryCurrentPage = 1;
+        let overtimeHistoryRowsPerPage = 10;
 
         const LS_DRAFT_KEY = 'laporan_draft';
         const LS_HISTORY_KEY = 'laporan_history';
@@ -568,11 +661,12 @@
             else if(page === 'overtime') overtimeBtns.forEach(id => document.getElementById(id).classList.remove('page-hidden'));
         }
 
-        // --- Laporan Logic (Condensed) ---
+        // --- Laporan Logic ---
         function handleAutoSave() { updatePreview(); clearTimeout(autoSaveTimeout); document.getElementById('saveStatus').textContent = "Menyimpan..."; autoSaveTimeout = setTimeout(() => { saveDraft(); document.getElementById('saveStatus').textContent = "Tersimpan"; setTimeout(() => { document.getElementById('saveStatus').textContent = ""; }, 2000); }, 500); }
         function saveDraft() { localStorage.setItem(LS_DRAFT_KEY, JSON.stringify(gatherFormData())); }
         function loadDraft() { const draft = localStorage.getItem(LS_DRAFT_KEY); if (draft) { try { populateForm(JSON.parse(draft)); } catch (e) {} } else { document.getElementById('tanggal').value = new Date().toISOString().split('T')[0]; } }
         function gatherFormData() { return { pemberiTugas: document.getElementById('pemberiTugas').value, nipPemberi: document.getElementById('nipPemberi').value, pelaksana: document.getElementById('pelaksana').value, nipPelaksana: document.getElementById('nipPelaksana').value, program: document.getElementById('program').value, tujuan: document.getElementById('tujuan').value, tanggal: document.getElementById('tanggal').value, tanggalSelesai: document.getElementById('tanggalSelesai').value, dokumentasi: document.getElementById('dokumentasi').value, activities: activities.map(a => ({ tanggal: a.tanggal, waktuMulai: a.waktuMulai, waktuSelesai: a.waktuSelesai, uraian: a.uraian })), photos: photos }; }
+        
         function populateForm(data) {
             document.getElementById('pemberiTugas').value = data.pemberiTugas || 'Guswandi, SST'; 
             document.getElementById('nipPemberi').value = data.nipPemberi || '19700818 199412 1 001'; 
@@ -586,6 +680,7 @@
             const container = document.getElementById('activityContainer'); container.innerHTML = ''; activities = []; activityCounter = 0;
             if (data.activities && data.activities.length > 0) { data.activities.forEach(act => addActivity(act)); } updatePreview();
         }
+        
         function updatePelaksanaDropdown(selectedName = null) {
             const select = document.getElementById('pelaksana'); const currentVal = selectedName || select.value;
             select.innerHTML = '<option value="">-- Pilih Pelaksana --</option>';
@@ -593,7 +688,9 @@
             sortedEmployees.forEach(emp => { const option = document.createElement('option'); option.value = emp.nama; option.textContent = emp.nama; select.appendChild(option); });
             if (currentVal) { const exists = sortedEmployees.some(e => e.nama === currentVal); if (exists) { select.value = currentVal; handlePelaksanaChange(currentVal); } else { const customOption = document.createElement('option'); customOption.value = currentVal; customOption.textContent = currentVal + " (Data Lama)"; select.appendChild(customOption); select.value = currentVal; } }
         }
+
         function handlePelaksanaChange(passedValue = null) { const nama = passedValue || document.getElementById('pelaksana').value; const nipInput = document.getElementById('nipPelaksana'); const emp = employees.find(e => e.nama === nama); if (emp) { nipInput.value = emp.nip; } else { if(!passedValue) nipInput.value = ''; } handleAutoSave(); }
+
         function triggerPhotoUpload() { if (photos.length >= 2) { alert("Maksimal 2 foto."); return; } document.getElementById('photoInput').click(); }
         function handlePhotoUpload(event) { const files = Array.from(event.target.files); const remainingSlots = 2 - photos.length; files.slice(0, remainingSlots).forEach(file => { const reader = new FileReader(); reader.onload = (e) => { photos.push(e.target.result); renderPhotos(); handleAutoSave(); }; reader.readAsDataURL(file); }); event.target.value = ''; }
         function removePhoto(index) { photos.splice(index, 1); renderPhotos(); handleAutoSave(); }
@@ -614,14 +711,18 @@
         
         function updatePreview() { document.getElementById('print-area').innerHTML = generatePreviewHTML(gatherFormData()); }
         function printDocument() { openPrintWindow(generatePreviewHTML(gatherFormData())); }
+        
         function openPrintWindow(content) { 
             const printWindow = window.open('', '_blank'); 
-            printWindow.document.write(`<!DOCTYPE html><html><head><title>Cetak</title><link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet"><style>* { font-family: 'Source Sans Pro', sans-serif; } body { margin: 0; padding: 0; background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; } .doc-preview { background: white; font-size: 10pt; line-height: 1.4; padding: 5mm 9mm 5mm 9mm; } .doc-title { text-align: center; font-weight: 700; font-size: 12pt; margin-bottom: 30px; } .doc-section-title { font-weight: 700; margin: 12px 0 8px 0; font-size: 10pt; } .doc-info-row { display: flex; margin-bottom: 4px; font-size: 10pt; margin-left: 20px; } .doc-info-number { width: 15px; } .doc-info-label { width: 280px; flex-shrink: 0; } .doc-info-separator { width: 10px; } .doc-info-value { flex: 1; } .doc-table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9pt; } .doc-table th, .doc-table td { border: 1px solid black; padding: 4px; vertical-align: top; } .doc-table th { background-color: #f0f0f0 !important; -webkit-print-color-adjust: exact; text-align: center; font-weight: 600; } thead tr:nth-child(2) th { font-size: 8pt; padding: 2px; font-weight: normal; } .doc-table-header-date { background-color: #e8e8e8 !important; font-weight: 600; } .doc-signature-container { display: flex; justify-content: space-between; margin-top: 15px; } .doc-signature-box { text-align: center; width: 180px; font-size: 9pt; } .doc-signature-name { margin-top: 40px; font-weight: 600; text-decoration: underline; } .doc-photo-grid { display: flex; justify-content: center; gap: 10px; margin-top: 10px; } .doc-photo-grid img { width: 8cm; height: auto; border: 1px solid #ccc; } .doc-photo-grid.count-1 { display: block; text-align: center; } .doc-photo-grid.count-1 img { width: 11cm; } .stmt-doc { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; color: black; } .stmt-title { text-align: center; font-weight: bold; text-decoration: underline; margin: 0 0 20px 0; text-transform: uppercase; } .stmt-header-table { width: 100%; font-size: 12pt; margin-bottom: 20px; border-collapse: collapse; } .stmt-header-table td { padding: 0; vertical-align: top; border: none; line-height: 1.4; } .stmt-content { text-align: justify; margin-bottom: 15px; } .stmt-signature-wrapper { width: 50%; float: right; text-align: center; margin-top: 20px; } .stmt-label { margin-bottom: 2px; font-weight: bold; } .stmt-name-container { display: inline-block; margin-top: 40px; text-align: center; } .stmt-name-text { font-weight: bold; border-bottom: 1px solid black; display: inline; padding-bottom: 1px; } .stmt-doc::after { content: ""; display: table; clear: both; } .overtime-doc { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; color: black; } .overtime-header-container { display: flex; align-items: flex-start; margin-bottom: 15px; border-bottom: 2px solid black; padding-bottom: 10px; } .overtime-logo { width: 70px; margin-right: 15px; } .overtime-header-text { text-align: left; flex: 1; } .overtime-header-institution { font-weight: bold; font-size: 14pt; line-height: 1.2; } .overtime-header-unit { font-size: 12pt; line-height: 1.2; } .overtime-identity-table { width: 100%; font-size: 12pt; margin-bottom: 15px; border-collapse: collapse; } .overtime-identity-table td { padding: 1px 0; vertical-align: top; border: none; } .overtime-label { width: 150px; } .work-box { border: 1.5px solid black; padding: 10px 15px; margin: 15px 0; border-radius: 4px; background: white; } .overtime-work-list { margin: 0; padding-left: 20px; } .overtime-signature-container { display: flex; justify-content: space-between; margin-top: 30px; width: 100%; } .overtime-signature-box { text-align: center; width: 45%; }</style></head><body>${content}<script>setTimeout(function() { window.print(); window.close(); }, 500);<\/script></body></html>`); 
+            printWindow.document.write(`<!DOCTYPE html><html><head><title>Cetak</title><link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet"><style>* { font-family: 'Source Sans Pro', sans-serif; } body { margin: 0; padding: 0; background: white; -webkit-print-color-adjust: exact; print-color-adjust: exact; } .doc-preview { background: white; font-size: 10pt; line-height: 1.4; padding: 5mm 9mm 5mm 9mm; } .doc-title { text-align: center; font-weight: 700; font-size: 12pt; margin-bottom: 30px; } .doc-section-title { font-weight: 700; margin: 12px 0 8px 0; font-size: 10pt; } .doc-info-row { display: flex; margin-bottom: 4px; font-size: 10pt; margin-left: 20px; } .doc-info-number { width: 15px; } .doc-info-label { width: 280px; flex-shrink: 0; } .doc-info-separator { width: 10px; } .doc-info-value { flex: 1; } .doc-table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 9pt; } .doc-table th, .doc-table td { border: 1px solid black; padding: 4px; vertical-align: top; } .doc-table th { background-color: #f0f0f0 !important; -webkit-print-color-adjust: exact; text-align: center; font-weight: 600; } thead tr:nth-child(2) th { font-size: 8pt; padding: 2px; font-weight: normal; } .doc-table-header-date { background-color: #e8e8e8 !important; font-weight: 600; } .doc-signature-container { display: flex; justify-content: space-between; margin-top: 15px; } .doc-signature-box { text-align: center; width: 180px; font-size: 9pt; } .doc-signature-name { margin-top: 40px; font-weight: 600; text-decoration: underline; } .doc-photo-grid { display: flex; justify-content: center; gap: 10px; margin-top: 10px; } .doc-photo-grid img { width: 8cm; height: auto; border: 1px solid #ccc; } .doc-photo-grid.count-1 { display: block; text-align: center; } .doc-photo-grid.count-1 img { width: 11cm; } .stmt-doc { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; color: black; } .stmt-title { text-align: center; font-weight: bold; text-decoration: underline; margin: 0 0 20px 0; text-transform: uppercase; } .stmt-header-table { width: 100%; font-size: 12pt; margin-bottom: 20px; border-collapse: collapse; } .stmt-header-table td { padding: 0; vertical-align: top; border: none; line-height: 1.4; } .stmt-content { text-align: justify; margin-bottom: 15px; } .stmt-signature-wrapper { width: 50%; float: right; text-align: center; margin-top: 20px; } .stmt-label { margin-bottom: 2px; font-weight: bold; } .stmt-name-container { display: inline-block; margin-top: 40px; text-align: center; } .stmt-name-text { font-weight: bold; border-bottom: 1px solid black; display: inline; padding-bottom: 1px; } .stmt-details-below { margin-top: 5px; font-size: 11pt; line-height: 1.4; } .stmt-doc::after { content: ""; display: table; clear: both; } .overtime-doc { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.5; color: black; } .overtime-header-container { display: flex; align-items: flex-start; margin-bottom: 15px; border-bottom: 2px solid black; padding-bottom: 10px; } .overtime-logo { width: 70px; margin-right: 15px; } .overtime-header-text { text-align: left; flex: 1; } .overtime-header-institution { font-weight: bold; font-size: 14pt; line-height: 1.2; } .overtime-header-unit { font-size: 12pt; line-height: 1.2; } .overtime-identity-table { width: 100%; font-size: 12pt; margin-bottom: 15px; border-collapse: collapse; } .overtime-identity-table td { padding: 1px 0; vertical-align: top; border: none; } .overtime-label { width: 150px; } .overtime-content { text-align: justify; margin-bottom: 10px; text-indent: 40px; } .work-box { border: 1.5px solid black; padding: 10px 15px; margin: 15px 0; border-radius: 4px; background: white; } .overtime-work-title { font-weight: bold; text-align: center; margin-bottom: 8px; font-size: 12pt; } .overtime-work-list { margin: 0; padding-left: 20px; } .overtime-signature-container { display: flex; justify-content: space-between; margin-top: 30px; width: 100%; } .overtime-signature-box { text-align: center; width: 45%; }</style></head><body>${content}<script>setTimeout(function() { window.print(); window.close(); }, 500);<\/script></body></html>`); 
             printWindow.document.close(); 
         }
 
         // --- History Management ---
-        function renderHistoryTable() { const tbody = document.getElementById('historyTableBody'); const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); const totalItems = history.length; if (totalItems === 0) { tbody.innerHTML = '<tr><td colspan="5" class="text-center text-gray-400 py-4">Belum ada data.</td></tr>'; } else { tbody.innerHTML = history.slice(0, 10).map((item, index) => `<tr><td class="text-center">${index + 1}</td><td class="text-center">${item.tanggal || '-'}</td><td>${item.pelaksana || '-'}</td><td>${item.tujuan || '-'}</td><td class="text-center"><div class="action-icons"><button onclick="viewData(${index})" class="btn btn-outline btn-icon" title="View"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></button><button onclick="editData(${index})" class="btn btn-primary btn-icon" title="Edit"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button><button onclick="printData(${index})" class="btn btn-success btn-icon" title="Cetak"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg></button><button onclick="deleteData(${index})" class="btn btn-danger btn-icon" title="Hapus"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button></div></td></tr>`).join(''); } document.getElementById('historyInfo').textContent = `Total: ${totalItems} data`; }
+        function renderHistoryTable() { const tbody = document.getElementById('historyTableBody'); const infoSpan = document.getElementById('historyInfo'); const paginationDiv = document.getElementById('historyPagination'); const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); const totalItems = history.length; const totalPages = Math.ceil(totalItems / historyRowsPerPage); const start = (historyCurrentPage - 1) * historyRowsPerPage; const end = start + historyRowsPerPage; const paginatedItems = history.slice(start, end); if (totalItems === 0) { infoSpan.textContent = "Tidak ada data."; tbody.innerHTML = '<tr><td colspan="5" class="text-center text-gray-400 py-4">Belum ada data.</td></tr>'; } else { infoSpan.textContent = `Menampilkan ${start + 1} - ${Math.min(end, totalItems)} dari ${totalItems} data.`; tbody.innerHTML = paginatedItems.map((item, index) => `<tr><td class="text-center">${start + index + 1}</td><td class="text-center">${item.tanggal || '-'}</td><td>${item.pelaksana || '-'}</td><td>${item.tujuan || '-'}</td><td class="text-center"><div class="action-icons"><button onclick="viewData(${start + index})" class="btn btn-outline btn-icon" title="View"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></button><button onclick="editData(${start + index})" class="btn btn-primary btn-icon" title="Edit"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button><button onclick="printData(${start + index})" class="btn btn-success btn-icon" title="Cetak"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg></button><button onclick="deleteData(${start + index})" class="btn btn-danger btn-icon" title="Hapus"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button></div></td></tr>`).join(''); } renderHistoryPagination(totalPages); }
+        function renderHistoryPagination(totalPages) { const container = document.getElementById('historyPagination'); if (totalPages <= 1) { container.innerHTML = ''; return; } let html = `<button onclick="goToHistoryPage(${historyCurrentPage - 1})" class="btn btn-outline btn-icon" ${historyCurrentPage === 1 ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>&laquo;</button>`; let startPage = Math.max(1, historyCurrentPage - 2); let endPage = Math.min(totalPages, startPage + 4); if(endPage - startPage < 4) startPage = Math.max(1, endPage - 4); if (startPage > 1) html += `<button onclick="goToHistoryPage(1)" class="btn btn-outline btn-icon">1</button>`; if (startPage > 2) html += `<span class="px-2 text-gray-400">...</span>`; for (let i = startPage; i <= endPage; i++) { const activeClass = i === historyCurrentPage ? 'btn-primary' : 'btn-outline'; html += `<button onclick="goToHistoryPage(${i})" class="btn ${activeClass} btn-icon">${i}</button>`; } if (endPage < totalPages - 1) html += `<span class="px-2 text-gray-400">...</span>`; if (endPage < totalPages) html += `<button onclick="goToHistoryPage(${totalPages})" class="btn btn-outline btn-icon">${totalPages}</button>`; html += `<button onclick="goToHistoryPage(${historyCurrentPage + 1})" class="btn btn-outline btn-icon" ${historyCurrentPage === totalPages ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>&raquo;</button>`; container.innerHTML = html; }
+        function goToHistoryPage(page) { const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); const totalPages = Math.ceil(history.length / historyRowsPerPage); if (page < 1 || page > totalPages) return; historyCurrentPage = page; renderHistoryTable(); document.querySelector('#page-list .table-scroll-container').scrollTop = 0; }
+        function changeHistoryPerPage(val) { historyRowsPerPage = parseInt(val); historyCurrentPage = 1; renderHistoryTable(); }
         function saveToHistory() { const data = gatherFormData(); if(!data.pelaksana || !data.tanggal) return alert("Isi minimal Pelaksana dan Tanggal."); let history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); history.unshift(data); localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(history)); alert("Laporan berhasil disimpan!"); renderHistoryTable(); }
         function viewData(index) { const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); document.getElementById('viewModalContent').innerHTML = generatePreviewHTML(history[index]); document.getElementById('viewModal').style.display = 'flex'; }
         function closeViewModal() { document.getElementById('viewModal').style.display = 'none'; }
@@ -630,22 +731,26 @@
         function deleteData(index) { if(confirm("Hapus data ini?")) { let history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'); history.splice(index, 1); localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(history)); renderHistoryTable(); } }
         function resetForm() { if (confirm('Reset form laporan?')) { localStorage.removeItem(LS_DRAFT_KEY); photos = []; activities = []; activityCounter = 0; document.getElementById('pemberiTugas').value = 'Guswandi, SST'; document.getElementById('nipPemberi').value = '19700818 199412 1 001'; updatePelaksanaDropdown(); document.getElementById('nipPelaksana').value = ''; document.getElementById('program').value = ''; document.getElementById('tujuan').value = ''; document.getElementById('tanggal').value = new Date().toISOString().split('T')[0]; document.getElementById('tanggalSelesai').value = ''; document.getElementById('dokumentasi').value = ''; document.getElementById('activityContainer').innerHTML = ''; renderPhotos(); addActivity(); } }
 
-        // --- Employee Logic ---
+        // --- EMPLOYEE LOGIC ---
         function loadEmployees() { const data = localStorage.getItem(LS_EMPLOYEE_KEY); if (data) { try { const parsed = JSON.parse(data); employees = parsed.employees || []; employeeCounter = parsed.counter || 0; } catch(e) { employees = []; employeeCounter = 0; } } if (employees.length === 0) { initializeDefaultData(); } }
         function initializeDefaultData() { employees = DEFAULT_EMPLOYEES.map((emp, index) => ({ id: index + 1, ...emp })); employeeCounter = DEFAULT_EMPLOYEES.length; saveEmployees(); }
         function saveEmployees() { localStorage.setItem(LS_EMPLOYEE_KEY, JSON.stringify({ employees, counter: employeeCounter })); }
-        function renderEmployeeTable() { const tbody = document.getElementById('employeeTableBody'); const totalItems = employees.length; if (totalItems === 0) { tbody.innerHTML = '<tr><td colspan="6" class="text-center text-gray-400 py-4">Belum ada data pegawai.</td></tr>'; } else { tbody.innerHTML = employees.slice(0, 10).map((emp, index) => `<tr><td class="text-center">${index + 1}</td><td>${emp.nama}</td><td class="text-center">${emp.nip}</td><td>${emp.pangkat}</td><td>${emp.jabatan}</td><td class="text-center"><div class="action-icons"><button onclick="editEmployee(${emp.id})" class="btn btn-primary btn-icon" title="Edit"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button><button onclick="deleteEmployee(${emp.id})" class="btn btn-danger btn-icon" title="Hapus"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button></div></td></tr>`).join(''); } document.getElementById('employeeInfo').textContent = `Total: ${totalItems} data`; }
+        function changeEmployeePerPage(val) { employeeRowsPerPage = parseInt(val); employeeCurrentPage = 1; renderEmployeeTable(); }
+        function renderEmployeeTable() { const tbody = document.getElementById('employeeTableBody'); const infoSpan = document.getElementById('employeeInfo'); const paginationDiv = document.getElementById('employeePagination'); const totalItems = employees.length; const totalPages = Math.ceil(totalItems / employeeRowsPerPage); const start = (employeeCurrentPage - 1) * employeeRowsPerPage; const end = start + employeeRowsPerPage; const paginatedItems = employees.slice(start, end); if (totalItems === 0) { infoSpan.textContent = "Tidak ada data."; } else { infoSpan.textContent = `Menampilkan ${start + 1} - ${Math.min(end, totalItems)} dari ${totalItems} data.`; } if (totalItems === 0) { tbody.innerHTML = '<tr><td colspan="6" class="text-center text-gray-400 py-4">Belum ada data pegawai.</td></tr>'; } else { tbody.innerHTML = paginatedItems.map((emp, index) => `<tr><td class="text-center">${start + index + 1}</td><td>${emp.nama}</td><td class="text-center">${emp.nip}</td><td>${emp.pangkat}</td><td>${emp.jabatan}</td><td class="text-center"><div class="action-icons"><button onclick="editEmployee(${emp.id})" class="btn btn-primary btn-icon" title="Edit"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button><button onclick="deleteEmployee(${emp.id})" class="btn btn-danger btn-icon" title="Hapus"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button></div></td></tr>`).join(''); } renderEmployeePagination(totalPages); }
+        function renderEmployeePagination(totalPages) { const container = document.getElementById('employeePagination'); if (totalPages <= 1) { container.innerHTML = ''; return; } let html = `<button onclick="goToEmployeePage(${employeeCurrentPage - 1})" class="btn btn-outline btn-icon" ${employeeCurrentPage === 1 ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>&laquo;</button>`; let startPage = Math.max(1, employeeCurrentPage - 2); let endPage = Math.min(totalPages, startPage + 4); if(endPage - startPage < 4) startPage = Math.max(1, endPage - 4); if (startPage > 1) html += `<button onclick="goToEmployeePage(1)" class="btn btn-outline btn-icon">1</button>`; if (startPage > 2) html += `<span class="px-2 text-gray-400">...</span>`; for (let i = startPage; i <= endPage; i++) { const activeClass = i === employeeCurrentPage ? 'btn-primary' : 'btn-outline'; html += `<button onclick="goToEmployeePage(${i})" class="btn ${activeClass} btn-icon">${i}</button>`; } if (endPage < totalPages - 1) html += `<span class="px-2 text-gray-400">...</span>`; if (endPage < totalPages) html += `<button onclick="goToEmployeePage(${totalPages})" class="btn btn-outline btn-icon">${totalPages}</button>`; html += `<button onclick="goToEmployeePage(${employeeCurrentPage + 1})" class="btn btn-outline btn-icon" ${employeeCurrentPage === totalPages ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>&raquo;</button>`; container.innerHTML = html; }
+        function goToEmployeePage(page) { const totalPages = Math.ceil(employees.length / employeeRowsPerPage); if (page < 1 || page > totalPages) return; employeeCurrentPage = page; renderEmployeeTable(); document.querySelector('#page-employee .table-scroll-container').scrollTop = 0; }
         function openEmployeeModal(id = null) { document.getElementById('emp-id').value = id || ''; if (id) { const emp = employees.find(e => e.id === id); document.getElementById('empModalTitle').textContent = "Edit Pegawai"; document.getElementById('emp-nama').value = emp.nama; document.getElementById('emp-nip').value = emp.nip; document.getElementById('emp-pangkat').value = emp.pangkat; document.getElementById('emp-jabatan').value = emp.jabatan; } else { document.getElementById('empModalTitle').textContent = "Tambah Pegawai"; document.getElementById('emp-nama').value = ''; document.getElementById('emp-nip').value = ''; document.getElementById('emp-pangkat').value = ''; document.getElementById('emp-jabatan').value = ''; } document.getElementById('employeeModal').style.display = 'flex'; }
         function closeEmployeeModal() { document.getElementById('employeeModal').style.display = 'none'; }
         function saveEmployee() { const id = document.getElementById('emp-id').value; const payload = { nama: document.getElementById('emp-nama').value, nip: document.getElementById('emp-nip').value, pangkat: document.getElementById('emp-pangkat').value, jabatan: document.getElementById('emp-jabatan').value }; if(!payload.nama) return alert("Nama wajib diisi."); if (id) { const index = employees.findIndex(e => e.id == id); if (index !== -1) { employees[index] = { id: Number(id), ...payload }; } } else { employeeCounter++; employees.push({ id: employeeCounter, ...payload }); employees.sort((a,b) => a.nama.localeCompare(b.nama)); } saveEmployees(); closeEmployeeModal(); renderEmployeeTable(); updateStatementDropdown(); updatePelaksanaDropdown(); }
         function editEmployee(id) { openEmployeeModal(id); }
-        function deleteEmployee(id) { if(confirm("Hapus pegawai ini?")) { employees = employees.filter(e => e.id !== id); saveEmployees(); renderEmployeeTable(); updateStatementDropdown(); updatePelaksanaDropdown(); } }
+        function deleteEmployee(id) { if(confirm("Hapus pegawai ini?")) { employees = employees.filter(e => e.id !== id); saveEmployees(); const totalPages = Math.ceil(employees.length / employeeRowsPerPage); if (employeeCurrentPage > totalPages) employeeCurrentPage = totalPages || 1; renderEmployeeTable(); updateStatementDropdown(); updatePelaksanaDropdown(); } }
 
-        // --- Statement Logic ---
+        // --- STATEMENT LOGIC ---
         function loadStatementDraft() { const draft = localStorage.getItem(LS_STATEMENT_KEY); if (draft) { try { const d = JSON.parse(draft); document.getElementById('stmt-kota').value = d.kota || 'Pekanbaru'; document.getElementById('stmt-tanggal').value = d.tanggal || new Date().toISOString().split('T')[0]; document.getElementById('stmt-unit').value = d.unit || 'BPS Kota Pekanbaru'; updateStatementDropdown(); if(d.nama) { document.getElementById('stmt-nama').value = d.nama; handleEmployeeSelect(d.nama); } } catch(e) {} } else { document.getElementById('stmt-tanggal').value = new Date().toISOString().split('T')[0]; document.getElementById('stmt-unit').value = 'BPS Kota Pekanbaru'; updateStatementDropdown(); } }
+        function saveStatementDraft() { const data = { kota: document.getElementById('stmt-kota').value, tanggal: document.getElementById('stmt-tanggal').value, nama: document.getElementById('stmt-nama').value, unit: document.getElementById('stmt-unit').value }; localStorage.setItem(LS_STATEMENT_KEY, JSON.stringify(data)); }
         function updateStatementDropdown() { const select = document.getElementById('stmt-nama'); const currentVal = select.value; select.innerHTML = '<option value="">-- Pilih Pegawai --</option>'; const sortedEmployees = [...employees].sort((a, b) => a.nama.localeCompare(b.nama)); sortedEmployees.forEach(emp => { select.innerHTML += `<option value="${emp.nama}">${emp.nama}</option>`; }); if(sortedEmployees.some(e => e.nama === currentVal)) { select.value = currentVal; } }
         function handleEmployeeSelect(name) { const emp = employees.find(e => e.nama === name); if(emp) { document.getElementById('stmt-nip').value = emp.nip; document.getElementById('stmt-pangkat').value = emp.pangkat; document.getElementById('stmt-jabatan').value = emp.jabatan; } else { document.getElementById('stmt-nip').value = ''; document.getElementById('stmt-pangkat').value = ''; document.getElementById('stmt-jabatan').value = ''; } updateStatementPreview(); }
-        function updateStatementPreview() { const d = { kota: document.getElementById('stmt-kota').value || '-', tanggal: document.getElementById('stmt-tanggal').value, nama: document.getElementById('stmt-nama').value || '-', nip: document.getElementById('stmt-nip').value || '-', pangkat: document.getElementById('stmt-pangkat').value || '-', jabatan: document.getElementById('stmt-jabatan').value || '-', unit: document.getElementById('stmt-unit').value || 'BPS Kota Pekanbaru' }; const dateStr = d.tanggal ? new Date(d.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '-'; const html = `<div class="stmt-doc doc-preview"><div class="stmt-title" style="font-size: 20px; font-weight: bold;">SURAT PERNYATAAN</div><p style="margin: 0 0 15px 0;">Yang bertanda tangan di bawah ini:</p><table class="stmt-header-table" style="border-collapse: collapse; margin: 0;"><tr><td style="width: 150px; padding: 4px 20px;">Nama</td><td style="padding: 4px 20px;">: ${d.nama}</td></tr><tr><td style="padding: 4px 20px;">NIP</td><td style="padding: 4px 20px;">: ${d.nip}</td></tr><tr><td style="padding: 4px 20px;">Pangkat/Golongan</td><td style="padding: 4px 20px;">: ${d.pangkat}</td></tr><tr><td style="padding: 4px 20px;">Jabatan</td><td style="padding: 4px 20px;">: ${d.jabatan}</td></tr><tr><td style="padding: 4px 20px;">Unit Kerja</td><td style="padding: 4px 20px;">: ${d.unit}</td></tr></table><p class="stmt-content">Menerangkan bahwa dalam rangka melaksanakan perjalanan dinas dalam kota untuk melaksanakan tugas kedinasan sesuai surat tugas, saya benar-benar tidak menggunakan kendaraan dinas.</p><p class="stmt-content">Demikian pernyataan ini kami buat dengan sebenar-benarnya untuk dipergunakan sebagaimana mestinya. Apabila terdapat kekeliruan dalam pertanggungjawaban SPD dan mengakibatkan kerugian Negara, saya bersedia dituntut sesuai peraturan yang berlaku dan mengembalikan biaya transport lokal yang sudah terlanjur saya terima ke kas Negara.</p><div class="stmt-signature-wrapper"><div>${d.kota}, ${dateStr}</div><div class="stmt-label">Pelaksana Perjalanan Dinas</div><div class="stmt-label" style="margin-bottom: 25px;">Dalam Kota</div><div class="stmt-name-container"><span class="stmt-name-text">${d.nama}</span></div></div>`; document.getElementById('print-area-statement').innerHTML = html; }
+        function updateStatementPreview() { saveStatementDraft(); const d = { kota: document.getElementById('stmt-kota').value || '-', tanggal: document.getElementById('stmt-tanggal').value, nama: document.getElementById('stmt-nama').value || '-', nip: document.getElementById('stmt-nip').value || '-', pangkat: document.getElementById('stmt-pangkat').value || '-', jabatan: document.getElementById('stmt-jabatan').value || '-', unit: document.getElementById('stmt-unit').value || 'BPS Kota Pekanbaru' }; const dateStr = d.tanggal ? new Date(d.tanggal).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '-'; const html = `<div class="stmt-doc doc-preview"><div class="stmt-title" style="font-size: 20px; font-weight: bold;">SURAT PERNYATAAN</div><p style="margin: 0 0 15px 0;">Yang bertanda tangan di bawah ini:</p><table class="stmt-header-table" style="border-collapse: collapse; margin: 0;"><tr><td style="width: 150px; padding: 4px 20px;">Nama</td><td style="padding: 4px 20px;">: ${d.nama}</td></tr><tr><td style="padding: 4px 20px;">NIP</td><td style="padding: 4px 20px;">: ${d.nip}</td></tr><tr><td style="padding: 4px 20px;">Pangkat/Golongan</td><td style="padding: 4px 20px;">: ${d.pangkat}</td></tr><tr><td style="padding: 4px 20px;">Jabatan</td><td style="padding: 4px 20px;">: ${d.jabatan}</td></tr><tr><td style="padding: 4px 20px;">Unit Kerja</td><td style="padding: 4px 20px;">: ${d.unit}</td></tr></table><p class="stmt-content">Menerangkan bahwa dalam rangka melaksanakan perjalanan dinas dalam kota untuk melaksanakan tugas kedinasan sesuai surat tugas, saya benar-benar tidak menggunakan kendaraan dinas.</p><p class="stmt-content">Demikian pernyataan ini kami buat dengan sebenar-benarnya untuk dipergunakan sebagaimana mestinya. Apabila terdapat kekeliruan dalam pertanggungjawaban SPD dan mengakibatkan kerugian Negara, saya bersedia dituntut sesuai peraturan yang berlaku dan mengembalikan biaya transport lokal yang sudah terlanjur saya terima ke kas Negara.</p><div class="stmt-signature-wrapper"><div>${d.kota}, ${dateStr}</div><div class="stmt-label">Pelaksana Perjalanan Dinas</div><div class="stmt-label" style="margin-bottom: 25px;">Dalam Kota</div><div class="stmt-name-container"><span class="stmt-name-text">${d.nama}</span></div></div>`; document.getElementById('print-area-statement').innerHTML = html; }
         function saveStatement() { if(!document.getElementById('stmt-nama').value) return alert("Pilih pegawai terlebih dahulu."); alert("Surat Pernyataan berhasil disimpan!"); resetStatementForm(); }
         function resetStatementForm() { localStorage.removeItem(LS_STATEMENT_KEY); document.getElementById('stmt-nama').value = ''; document.getElementById('stmt-nip').value = ''; document.getElementById('stmt-pangkat').value = ''; document.getElementById('stmt-jabatan').value = ''; document.getElementById('stmt-tanggal').value = new Date().toISOString().split('T')[0]; updateStatementPreview(); }
         function printStatement() { openPrintWindow(document.getElementById('print-area-statement').innerHTML); }
@@ -653,62 +758,64 @@
         // --- OVERTIME LOGIC ---
         function initOvertimePage() {
             populateOvertimeTimeDropdowns();
-            loadOvertimeDraft();
-        }
+            const draft = localStorage.getItem(LS_OVERTIME_KEY);
+            if(draft) {
+                try {
+                    const d = JSON.parse(draft);
+                    document.getElementById('ovt-kota').value = d.kota || 'Pekanbaru';
+                    document.getElementById('ovt-tanggal').value = d.tanggal || '';
+                    document.getElementById('ovt-tanggal-cetak').value = d.tanggalCetak || new Date().toISOString().split('T')[0];
+                    document.getElementById('ovt-uraian').value = d.uraian || '';
+                    
+                    if(d.jamMulai) document.getElementById('ovt-jam-mulai').value = d.jamMulai;
+                    if(d.menitMulai) document.getElementById('ovt-menit-mulai').value = d.menitMulai;
+                    if(d.jamSelesai) document.getElementById('ovt-jam-selesai').value = d.jamSelesai;
+                    if(d.menitSelesai) document.getElementById('ovt-menit-selesai').value = d.menitSelesai;
+                    
+                    // Field Kepala di-set manual
+                    document.getElementById('ovt-kepala').value = "Guswandi, SST";
 
-        // FIX: Populate dropdowns 00-23 and 00-59 specifically for overtime without return check
+                    updateOvertimeDropdowns();
+                    if(d.nama) {
+                        document.getElementById('ovt-nama').value = d.nama;
+                        handleOvertimeEmployeeSelect(d.nama);
+                    }
+                } catch(e) {}
+            }
+            updateOvertimePreview();
+        }
+        
         function populateOvertimeTimeDropdowns() {
             const jamMulai = document.getElementById('ovt-jam-mulai');
             const jamSelesai = document.getElementById('ovt-jam-selesai');
             const menitMulai = document.getElementById('ovt-menit-mulai');
             const menitSelesai = document.getElementById('ovt-menit-selesai');
             
-            // Clear existing options first to avoid duplicates
-            jamMulai.innerHTML = '';
-            jamSelesai.innerHTML = '';
-            menitMulai.innerHTML = '';
-            menitSelesai.innerHTML = '';
-
-            // Hours: 00 to 23
             for(let i=0; i<=23; i++) {
                 const val = i.toString().padStart(2, '0');
-                const selected = (i === 8) ? 'selected' : ''; // Default 08:00
-                const optStart = new Option(val, val, false, i === 8);
-                const optEnd = new Option(val, val, false, i === 8);
-                jamMulai.add(optStart);
-                jamSelesai.add(optEnd);
+                jamMulai.innerHTML += `<option value="${val}">${val}</option>`;
+                jamSelesai.innerHTML += `<option value="${val}">${val}</option>`;
             }
             
-            // Minutes: 00 to 59
             for(let i=0; i<=59; i++) {
                 const val = i.toString().padStart(2, '0');
-                const optStart = new Option(val, val, false, i === 0);
-                const optEnd = new Option(val, val, false, i === 0);
-                menitMulai.add(optStart);
-                menitSelesai.add(optEnd);
+                menitMulai.innerHTML += `<option value="${val}">${val}</option>`;
+                menitSelesai.innerHTML += `<option value="${val}">${val}</option>`;
             }
         }
         
         function updateOvertimeDropdowns() {
             const namaSelect = document.getElementById('ovt-nama');
-            const kepalaSelect = document.getElementById('ovt-kepala');
-            
             const currentNama = namaSelect.value;
-            const currentKepala = kepalaSelect.value;
             
             namaSelect.innerHTML = '<option value="">-- Pilih Pegawai --</option>';
-            kepalaSelect.innerHTML = '<option value="">-- Pilih Kepala --</option>';
             
             const sortedEmployees = [...employees].sort((a, b) => a.nama.localeCompare(b.nama));
             sortedEmployees.forEach(emp => {
                 namaSelect.innerHTML += `<option value="${emp.nama}">${emp.nama}</option>`;
-                if(emp.jabatan.toLowerCase().includes('kepala')) {
-                    kepalaSelect.innerHTML += `<option value="${emp.nama}" data-nip="${emp.nip}">${emp.nama}</option>`;
-                }
             });
             
             if (currentNama) namaSelect.value = currentNama;
-            if (currentKepala) kepalaSelect.value = currentKepala;
         }
         
         function handleOvertimeEmployeeSelect(name) {
@@ -725,46 +832,9 @@
             updateOvertimePreview();
         }
         
-        function loadOvertimeDraft() {
-            const draft = localStorage.getItem(LS_OVERTIME_KEY);
-            let d = {};
-            if(draft) {
-                try { d = JSON.parse(draft); } catch(e) {}
-            }
-            
-            document.getElementById('ovt-kota').value = d.kota || 'Pekanbaru';
-            document.getElementById('ovt-tanggal').value = d.tanggal || '';
-            document.getElementById('ovt-tanggal-cetak').value = d.tanggalCetak || new Date().toISOString().split('T')[0];
-            document.getElementById('ovt-uraian').value = d.uraian || '';
-            
-            updateOvertimeDropdowns();
-            
-            if(d.nama) {
-                document.getElementById('ovt-nama').value = d.nama;
-                handleOvertimeEmployeeSelect(d.nama);
-            } else {
-                 document.getElementById('ovt-nama').value = '';
-                 document.getElementById('ovt-nip').value = '';
-                 document.getElementById('ovt-pangkat').value = '';
-                 document.getElementById('ovt-jabatan').value = '';
-            }
-
-            // Set time values if they exist in draft, otherwise default to 08:00 handled by populate
-            if(d.jamMulai) document.getElementById('ovt-jam-mulai').value = d.jamMulai;
-            if(d.menitMulai) document.getElementById('ovt-menit-mulai').value = d.menitMulai;
-            if(d.jamSelesai) document.getElementById('ovt-jam-selesai').value = d.jamSelesai;
-            if(d.menitSelesai) document.getElementById('ovt-menit-selesai').value = d.menitSelesai;
-            if(d.kepalaNama) document.getElementById('ovt-kepala').value = d.kepalaNama;
-
-            updateOvertimePreview();
-        }
-
         function saveOvertimeDraft() {
             const d = {
                 nama: document.getElementById('ovt-nama').value,
-                nip: document.getElementById('ovt-nip').value,
-                pangkat: document.getElementById('ovt-pangkat').value,
-                jabatan: document.getElementById('ovt-jabatan').value,
                 kota: document.getElementById('ovt-kota').value,
                 tanggal: document.getElementById('ovt-tanggal').value,
                 tanggalCetak: document.getElementById('ovt-tanggal-cetak').value,
@@ -773,18 +843,36 @@
                 menitMulai: document.getElementById('ovt-menit-mulai').value,
                 jamSelesai: document.getElementById('ovt-jam-selesai').value,
                 menitSelesai: document.getElementById('ovt-menit-selesai').value,
-                kepalaNama: document.getElementById('ovt-kepala').value,
-                kepalaNip: document.querySelector(`#ovt-kepala option[value="${document.getElementById('ovt-kepala').value}"]`)?.dataset.nip || ''
+                kepalaNama: document.getElementById('ovt-kepala').value // Ambil dari input text
             };
             localStorage.setItem(LS_OVERTIME_KEY, JSON.stringify(d));
-            return d;
         }
 
         function updateOvertimePreview() {
-            const d = saveOvertimeDraft();
+            saveOvertimeDraft();
             
-            const start = parseInt(d.jamMulai || 0) * 60 + parseInt(d.menitMulai || 0);
-            let end = parseInt(d.jamSelesai || 0) * 60 + parseInt(d.menitSelesai || 0);
+            const d = {
+                nama: document.getElementById('ovt-nama').value || '-',
+                nip: document.getElementById('ovt-nip').value || '-',
+                pangkat: document.getElementById('ovt-pangkat').value || '-',
+                jabatan: document.getElementById('ovt-jabatan').value || '-',
+                kota: document.getElementById('ovt-kota').value || 'Pekanbaru',
+                tanggal: document.getElementById('ovt-tanggal').value,
+                tanggalCetak: document.getElementById('ovt-tanggal-cetak').value,
+                jamMulai: document.getElementById('ovt-jam-mulai').value || '00',
+                menitMulai: document.getElementById('ovt-menit-mulai').value || '00',
+                jamSelesai: document.getElementById('ovt-jam-selesai').value || '00',
+                menitSelesai: document.getElementById('ovt-menit-selesai').value || '00',
+                uraian: document.getElementById('ovt-uraian').value || '-',
+                kepalaNama: document.getElementById('ovt-kepala').value || '-' // Dari input text
+            };
+
+            // Cari NIP Kepala dari database berdasarkan nama di input text
+            const kepalaEmp = employees.find(e => e.nama === d.kepalaNama);
+            const kepalaNip = kepalaEmp ? kepalaEmp.nip : '19700818 199412 1 001'; // Default Guswandi
+            
+            const start = parseInt(d.jamMulai) * 60 + parseInt(d.menitMulai);
+            let end = parseInt(d.jamSelesai) * 60 + parseInt(d.menitSelesai);
             if(end < start) end += 24 * 60; 
             
             const diffMinutes = end - start;
@@ -814,10 +902,12 @@
             }
             
             const uraianItems = d.uraian.split('\n').filter(item => item.trim() !== '');
-            let uraianHtml = uraianItems.length > 0 ? uraianItems.map(item => `<li>${item.replace(/^- /, '')}</li>`).join('') : '<li>-</li>';
-            
-            const kepalaOption = document.querySelector(`#ovt-kepala option[value="${d.kepalaNama}"]`);
-            const kepalaNip = kepalaOption ? kepalaOption.dataset.nip : '-';
+            let uraianHtml = '';
+            if(uraianItems.length > 0) {
+                uraianHtml = uraianItems.map(item => `<li>${item.replace(/^- /, '')}</li>`).join('');
+            } else {
+                uraianHtml = '<li>-</li>';
+            }
 
             const html = `
                 <div class="overtime-doc doc-preview">
@@ -834,34 +924,36 @@
                     <p style="margin-bottom: 2px;">Yang bertandatangan di bawah ini :</p>
                     
                     <table class="identity-table">
-                        <tr><td style="padding: 2px 5px 2px 25px;">Nama</td><td>: ${d.nama || '-'}</td></tr>
-                        <tr><td style="padding: 2px 5px 2px 25px;">NIP</td><td>: ${d.nip || '-'}</td></tr>
-                        <tr><td style="padding: 2px 5px 2px 25px;">Pangkat/Gol.</td><td>: ${d.pangkat || '-'}</td></tr>
-                        <tr><td style="padding: 2px 5px 2px 25px;">Jabatan</td><td>: ${d.jabatan || '-'}</td></tr>
+                        <tr><td style="padding: 2px 5px 2px 25px;">Nama</td><td>: ${d.nama}</td></tr>
+                        <tr><td style="padding: 2px 5px 2px 25px;">NIP</td><td>: ${d.nip}</td></tr>
+                        <tr><td style="padding: 2px 5px 2px 25px;">Pangkat/Gol.</td><td>: ${d.pangkat}</td></tr>
+                        <tr><td style="padding: 2px 5px 2px 25px;">Jabatan</td><td>: ${d.jabatan}</td></tr>
                     </table>
                     
-                    <p class="stmt-content">
+                    <div class="content">
                         Menerangkan dengan sesungguhnya bahwa saya telah melaksanakan pekerjaan lembur pada Hari ${hariText}, 
-                        Tanggal ${dateStr} dari Pukul ${d.jamMulai || '00'}:${d.menitMulai || '00'} - ${d.jamSelesai || '00'}:${d.menitSelesai || '00'} WIB (${durationText}), dengan uraian pekerjaan sebagai berikut:
-                    </p>
+                        Tanggal ${dateStr} dari Pukul ${d.jamMulai}:${d.menitMulai} - ${d.jamSelesai}:${d.menitSelesai} WIB (${durationText}), dengan uraian pekerjaan sebagai berikut:
+                    </div>
                     
-                    <div class="">
+                    <div class="work-box">
                         <div class="overtime-work-title"></div>
-                        <ul class="overtime-work-list">${uraianHtml}</ul>
+                        <ul class="overtime-work-list">
+                            ${uraianHtml}
+                        </ul>
                     </div>
                     
                     <div class="overtime-signature-container">
                         <div class="overtime-signature-box">
                             <div style="height: 1.5em;">&nbsp;</div>
                             <div style="font-weight: bold;">Kepala,</div>
-                            <div style="margin-top: 60px; font-weight: bold; text-decoration: underline;">${d.kepalaNama || '-'}</div>
+                            <div style="margin-top: 60px; font-weight: bold; text-decoration: underline;">${d.kepalaNama}</div>
                             <div>NIP. ${kepalaNip}</div>
                         </div>
                         <div class="overtime-signature-box">
-                            <div>${d.kota || 'Pekanbaru'}, ${dateCetakStr}</div>
+                            <div>${d.kota}, ${dateCetakStr}</div>
                             <div style="font-weight: bold;">Pegawai Pelaksana Lembur,</div>
-                            <div style="margin-top: 60px; font-weight: bold; text-decoration: underline;">${d.nama || '-'}</div>
-                            <div>NIP. ${d.nip || '-'}</div>
+                            <div style="margin-top: 60px; font-weight: bold; text-decoration: underline;">${d.nama}</div>
+                            <div>NIP. ${d.nip}</div>
                         </div>
                     </div>
                 </div>
@@ -873,36 +965,90 @@
         // --- OVERTIME HISTORY MANAGEMENT ---
         function renderOvertimeHistoryTable() {
             const tbody = document.getElementById('overtimeHistoryTableBody');
+            const infoSpan = document.getElementById('overtimeHistoryInfo');
+            const paginationDiv = document.getElementById('overtimeHistoryPagination');
             const history = JSON.parse(localStorage.getItem(LS_OVERTIME_HISTORY_KEY) || '[]');
             const totalItems = history.length;
+            const totalPages = Math.ceil(totalItems / overtimeHistoryRowsPerPage);
+            const start = (overtimeHistoryCurrentPage - 1) * overtimeHistoryRowsPerPage;
+            const end = start + overtimeHistoryRowsPerPage;
+            const paginatedItems = history.slice(start, end);
 
             if (totalItems === 0) {
+                infoSpan.textContent = "Tidak ada data.";
                 tbody.innerHTML = '<tr><td colspan="5" class="text-center text-gray-400 py-4">Belum ada data lembur.</td></tr>';
             } else {
-                tbody.innerHTML = history.map((item, index) => {
+                infoSpan.textContent = `Menampilkan ${start + 1} - ${Math.min(end, totalItems)} dari ${totalItems} data.`;
+                tbody.innerHTML = paginatedItems.map((item, index) => {
                     const uraianShort = item.uraian.length > 50 ? item.uraian.substring(0, 50) + '...' : item.uraian;
                     return `<tr>
-                        <td class="text-center">${index + 1}</td>
+                        <td class="text-center">${start + index + 1}</td>
                         <td class="text-center">${item.tanggal || '-'}</td>
                         <td>${item.nama || '-'}</td>
                         <td style="white-space: pre-wrap;">${uraianShort || '-'}</td>
                         <td class="text-center">
                             <div class="action-icons">
-                                <button onclick="viewOvertimeData(${index})" class="btn btn-outline btn-icon" title="View"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></button>
-                                <button onclick="editOvertimeData(${index})" class="btn btn-primary btn-icon" title="Edit"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button>
-                                <button onclick="printOvertimeData(${index})" class="btn btn-success btn-icon" title="Cetak"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg></button>
-                                <button onclick="deleteOvertimeData(${index})" class="btn btn-danger btn-icon" title="Hapus"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+                                <button onclick="viewOvertimeData(${start + index})" class="btn btn-outline btn-icon" title="View"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></button>
+                                <button onclick="editOvertimeData(${start + index})" class="btn btn-primary btn-icon" title="Edit"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button>
+                                <button onclick="printOvertimeData(${start + index})" class="btn btn-success btn-icon" title="Cetak"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg></button>
+                                <button onclick="deleteOvertimeData(${start + index})" class="btn btn-danger btn-icon" title="Hapus"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
                             </div>
                         </td>
                     </tr>`;
                 }).join('');
             }
-            document.getElementById('overtimeHistoryInfo').textContent = `Total: ${totalItems} data`;
+            renderOvertimeHistoryPagination(totalPages);
         }
 
+        function renderOvertimeHistoryPagination(totalPages) {
+            const container = document.getElementById('overtimeHistoryPagination');
+            if (totalPages <= 1) { container.innerHTML = ''; return; }
+            let html = `<button onclick="goToOvertimeHistoryPage(${overtimeHistoryCurrentPage - 1})" class="btn btn-outline btn-icon" ${overtimeHistoryCurrentPage === 1 ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>&laquo;</button>`;
+            let startPage = Math.max(1, overtimeHistoryCurrentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+            if(endPage - startPage < 4) startPage = Math.max(1, endPage - 4);
+            if (startPage > 1) html += `<button onclick="goToOvertimeHistoryPage(1)" class="btn btn-outline btn-icon">1</button>`;
+            if (startPage > 2) html += `<span class="px-2 text-gray-400">...</span>`;
+            for (let i = startPage; i <= endPage; i++) { const activeClass = i === overtimeHistoryCurrentPage ? 'btn-primary' : 'btn-outline'; html += `<button onclick="goToOvertimeHistoryPage(${i})" class="btn ${activeClass} btn-icon">${i}</button>`; }
+            if (endPage < totalPages - 1) html += `<span class="px-2 text-gray-400">...</span>`;
+            if (endPage < totalPages) html += `<button onclick="goToOvertimeHistoryPage(${totalPages})" class="btn btn-outline btn-icon">${totalPages}</button>`;
+            html += `<button onclick="goToOvertimeHistoryPage(${overtimeHistoryCurrentPage + 1})" class="btn btn-outline btn-icon" ${overtimeHistoryCurrentPage === totalPages ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>&raquo;</button>`;
+            container.innerHTML = html;
+        }
+
+        function goToOvertimeHistoryPage(page) {
+            const history = JSON.parse(localStorage.getItem(LS_OVERTIME_HISTORY_KEY) || '[]');
+            const totalPages = Math.ceil(history.length / overtimeHistoryRowsPerPage);
+            if (page < 1 || page > totalPages) return;
+            overtimeHistoryCurrentPage = page;
+            renderOvertimeHistoryTable();
+            document.querySelector('#page-overtime-list .table-scroll-container').scrollTop = 0;
+        }
+
+        function changeOvertimeHistoryPerPage(val) { 
+            overtimeHistoryRowsPerPage = parseInt(val); 
+            overtimeHistoryCurrentPage = 1; 
+            renderOvertimeHistoryTable(); 
+        }
+        
         function saveOvertimeToHistory() {
-            const d = saveOvertimeDraft();
-            
+            const d = {
+                nama: document.getElementById('ovt-nama').value,
+                nip: document.getElementById('ovt-nip').value,
+                pangkat: document.getElementById('ovt-pangkat').value,
+                jabatan: document.getElementById('ovt-jabatan').value,
+                kota: document.getElementById('ovt-kota').value,
+                tanggal: document.getElementById('ovt-tanggal').value,
+                tanggalCetak: document.getElementById('ovt-tanggal-cetak').value,
+                uraian: document.getElementById('ovt-uraian').value,
+                jamMulai: document.getElementById('ovt-jam-mulai').value,
+                menitMulai: document.getElementById('ovt-menit-mulai').value,
+                jamSelesai: document.getElementById('ovt-jam-selesai').value,
+                menitSelesai: document.getElementById('ovt-menit-selesai').value,
+                kepalaNama: document.getElementById('ovt-kepala').value,
+                kepalaNip: employees.find(e => e.nama === document.getElementById('ovt-kepala').value)?.nip || '19700818 199412 1 001'
+            };
+
             if(!d.nama || !d.tanggal) return alert("Isi minimal Nama dan Tanggal Lembur.");
             
             let history = JSON.parse(localStorage.getItem(LS_OVERTIME_HISTORY_KEY) || '[]');
@@ -910,7 +1056,7 @@
             localStorage.setItem(LS_OVERTIME_HISTORY_KEY, JSON.stringify(history));
             alert("Laporan lembur berhasil disimpan!");
             
-            localStorage.removeItem(LS_OVERTIME_KEY);
+            // Reset form after save
             resetOvertimeForm();
             renderOvertimeHistoryTable();
         }
@@ -966,12 +1112,12 @@
                         <tr><td style="padding: 2px 5px 2px 25px;">Jabatan</td><td>: ${d.jabatan || '-'}</td></tr>
                     </table>
                     
-                    <p class="stmt-content">
+                    <div class="content">
                         Menerangkan dengan sesungguhnya bahwa saya telah melaksanakan pekerjaan lembur pada Hari ${hariText}, 
                         Tanggal ${dateStr} dari Pukul ${d.jamMulai || '00'}:${d.menitMulai || '00'} - ${d.jamSelesai || '00'}:${d.menitSelesai || '00'} WIB (${durationText}), dengan uraian pekerjaan sebagai berikut:
-                    </p>
+                    </div>
                     
-                    <div class="">
+                    <div class="work-box">
                         <div class="overtime-work-title"></div>
                         <ul class="overtime-work-list">${uraianHtml}</ul>
                     </div>
@@ -1005,11 +1151,14 @@
             const history = JSON.parse(localStorage.getItem(LS_OVERTIME_HISTORY_KEY) || '[]');
             const data = history[index];
             
+            // Hapus data dari history
             history.splice(index, 1);
             localStorage.setItem(LS_OVERTIME_HISTORY_KEY, JSON.stringify(history));
             
+            // Simpan data yang akan diedit ke draft
             localStorage.setItem(LS_OVERTIME_KEY, JSON.stringify(data));
             
+            // Langsung pindah ke halaman input dan isi form
             showPage('overtime');
         }
 
@@ -1040,11 +1189,15 @@
             document.getElementById('ovt-kota').value = 'Pekanbaru';
             document.getElementById('ovt-tanggal-cetak').value = new Date().toISOString().split('T')[0];
             
-            // Repopulate dropdowns to reset indices to default (08:00)
-            populateOvertimeTimeDropdowns();
-            document.getElementById('ovt-kepala').selectedIndex = 0;
+            // Reset time dropdowns
+             document.getElementById('ovt-jam-mulai').selectedIndex = 0;
+             document.getElementById('ovt-menit-mulai').selectedIndex = 0;
+             document.getElementById('ovt-jam-selesai').selectedIndex = 0;
+             document.getElementById('ovt-menit-selesai').selectedIndex = 0;
              
-             updateOvertimeDropdowns();
+             // Reset Kepala ke default
+             document.getElementById('ovt-kepala').value = "Guswandi, SST";
+             
              updateOvertimePreview();
         }
         
@@ -1052,13 +1205,20 @@
 
         // --- Backup & Restore ---
         function exportAllData() {
+            const history = JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]');
+            const draft = JSON.parse(localStorage.getItem(LS_DRAFT_KEY) || '{}');
+            const stmtDraft = JSON.parse(localStorage.getItem(LS_STATEMENT_KEY) || '{}');
+            const overtimeDraft = JSON.parse(localStorage.getItem(LS_OVERTIME_KEY) || '{}');
+            const overtimeHistory = JSON.parse(localStorage.getItem(LS_OVERTIME_HISTORY_KEY) || '[]');
+            const empDb = { employees, counter: employeeCounter };
+            
             const backupData = { 
                 type: 'backup_all_v5', 
                 exportDate: new Date().toISOString(), 
-                laporan: { history: JSON.parse(localStorage.getItem(LS_HISTORY_KEY) || '[]'), draft: JSON.parse(localStorage.getItem(LS_DRAFT_KEY) || '{}') }, 
-                statement: { draft: JSON.parse(localStorage.getItem(LS_STATEMENT_KEY) || '{}') },
-                overtime: { draft: JSON.parse(localStorage.getItem(LS_OVERTIME_KEY) || '{}'), history: JSON.parse(localStorage.getItem(LS_OVERTIME_HISTORY_KEY) || '[]') },
-                employees: { employees, counter: employeeCounter }
+                laporan: { history, draft }, 
+                statement: { draft: stmtDraft },
+                overtime: { draft: overtimeDraft, history: overtimeHistory },
+                employees: empDb
             };
             const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -1073,7 +1233,7 @@
                 try {
                     const data = JSON.parse(e.target.result);
                     if (data.type.startsWith('backup_all')) {
-                        if(confirm("Pulihkan semua data?")) {
+                        if(confirm("Pulihkan semua data (Laporan, Surat Pernyataan, Lembur, Pegawai)?")) {
                             if(data.laporan) {
                                 if(data.laporan.history) localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(data.laporan.history));
                                 if(data.laporan.draft) localStorage.setItem(LS_DRAFT_KEY, JSON.stringify(data.laporan.draft));
@@ -1090,7 +1250,14 @@
                             }
                             location.reload();
                         }
-                    }
+                    } else if (data.type === 'backup_perjadin' || Array.isArray(data)) {
+                        if(confirm("Pulihkan data Laporan Perjadin?")) {
+                            const h = Array.isArray(data) ? data : data.history;
+                            localStorage.setItem(LS_HISTORY_KEY, JSON.stringify(h));
+                            if(data.draft) localStorage.setItem(LS_DRAFT_KEY, JSON.stringify(data.draft));
+                            loadDraft(); renderHistoryTable();
+                        }
+                    } else { populateForm(data); alert("Data laporan berhasil dimuat."); }
                 } catch (err) { alert("Gagal membaca file."); console.error(err); }
             };
             reader.readAsText(file);
