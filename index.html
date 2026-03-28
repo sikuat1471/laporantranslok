@@ -155,10 +155,15 @@
     <header class="bg-blue-600 text-white py-4 no-print shadow-lg">
         <div class="container mx-auto px-4 relative z-10">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-3">
-                <div>
-                    <h1 class="display-font text-2xl font-bold">Laporan Perjalanan Dinas</h1>
-                    <p class="text-blue-100 text-xs">Sistem Input Translok BPS Kota Pekanbaru</p>
+                <!-- Modified Section: Added Logo -->
+                <div class="flex items-center gap-3">
+                    <img src="https://z-cdn-media.chatglm.cn/files/b8bffa74-ccd7-43df-ac0a-7d38232e3901.png?auth_key=1872868863-b6cd966dc51a4c34aa738032b487a895-0-e6beed34fb7fb9a9650976366f590c26" alt="Logo BPS" class="h-10 w-auto">
+                    <div>
+                        <h1 class="display-font text-2xl font-bold">Laporan Perjalanan Dinas</h1>
+                        <p class="text-blue-100 text-xs">Sistem Input Translok BPS Kota Pekanbaru</p>
+                    </div>
                 </div>
+                <!-- End Modified Section -->
                 <div class="flex flex-wrap gap-2 justify-center">
                     <button onclick="showPage('input')" class="btn bg-white text-blue-600 hover:bg-blue-50 text-xs">Input Laporan</button>
                     <button onclick="showPage('list')" class="btn bg-white text-blue-600 hover:bg-blue-50 text-xs">Data Perjadin</button>
