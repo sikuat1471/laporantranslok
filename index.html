@@ -626,7 +626,7 @@
             renderEmployeeTable(); 
             updatePelaksanaDropdown(); 
             setActiveNavButtons('input');
-            initOvertimePage(); 
+            initOvertimePage(); // Fungsi ini penting untuk mengisi dropdown jam
             renderOvertimeHistoryTable();
         });
 
@@ -758,38 +758,51 @@
         function printStatement() { openPrintWindow(document.getElementById('print-area-statement').innerHTML); }
         
         // --- OVERTIME LOGIC ---
-       function loadOvertimeDraft() {
-    const draft = localStorage.getItem(LS_OVERTIME_KEY);
-    if(draft) {
-        try {
-            const d = JSON.parse(draft);
-            document.getElementById('ovt-kota').value = d.kota || 'Pekanbaru';
-            document.getElementById('ovt-tanggal').value = d.tanggal || '';
-            document.getElementById('ovt-tanggal-cetak').value = d.tanggalCetak || new Date().toISOString().split('T')[0];
-            document.getElementById('ovt-uraian').value = d.uraian || '';
-            
-            if(d.jamMulai) document.getElementById('ovt-jam-mulai').value = d.jamMulai;
-            if(d.menitMulai) document.getElementById('ovt-menit-mulai').value = d.menitMulai;
-            if(d.jamSelesai) document.getElementById('ovt-jam-selesai').value = d.jamSelesai;
-            if(d.menitSelesai) document.getElementById('ovt-menit-selesai').value = d.menitSelesai;
-            
-            document.getElementById('ovt-kepala').value = d.kepalaNama || "Guswandi, SST";
-
+        // FUNGSI INI DIUBAH/DITAMBAHKAN UNTUK INISIALISASI DROPDOWN
+        function initOvertimePage() {
+            populateOvertimeTimeDropdowns();
+            loadOvertimeDraft();
             updateOvertimeDropdowns();
-            if(d.nama) {
-                document.getElementById('ovt-nama').value = d.nama;
-                handleOvertimeEmployeeSelect(d.nama);
+            updateOvertimePreview();
+        }
+        
+        function loadOvertimeDraft() {
+            const draft = localStorage.getItem(LS_OVERTIME_KEY);
+            if(draft) {
+                try {
+                    const d = JSON.parse(draft);
+                    document.getElementById('ovt-kota').value = d.kota || 'Pekanbaru';
+                    document.getElementById('ovt-tanggal').value = d.tanggal || '';
+                    document.getElementById('ovt-tanggal-cetak').value = d.tanggalCetak || new Date().toISOString().split('T')[0];
+                    document.getElementById('ovt-uraian').value = d.uraian || '';
+                    
+                    if(d.jamMulai) document.getElementById('ovt-jam-mulai').value = d.jamMulai;
+                    if(d.menitMulai) document.getElementById('ovt-menit-mulai').value = d.menitMulai;
+                    if(d.jamSelesai) document.getElementById('ovt-jam-selesai').value = d.jamSelesai;
+                    if(d.menitSelesai) document.getElementById('ovt-menit-selesai').value = d.menitSelesai;
+                    
+                    document.getElementById('ovt-kepala').value = d.kepalaNama || "Guswandi, SST";
+                    
+                    if(d.nama) {
+                        document.getElementById('ovt-nama').value = d.nama;
+                        handleOvertimeEmployeeSelect(d.nama);
+                    }
+                } catch(e) {}
             }
-        } catch(e) {}
-    }
-    updateOvertimePreview();
-}
+            updateOvertimePreview();
+        }
         
         function populateOvertimeTimeDropdowns() {
             const jamMulai = document.getElementById('ovt-jam-mulai');
             const jamSelesai = document.getElementById('ovt-jam-selesai');
             const menitMulai = document.getElementById('ovt-menit-mulai');
             const menitSelesai = document.getElementById('ovt-menit-selesai');
+            
+            // Reset options
+            jamMulai.innerHTML = '';
+            jamSelesai.innerHTML = '';
+            menitMulai.innerHTML = '';
+            menitSelesai.innerHTML = '';
             
             for(let i=0; i<=23; i++) {
                 const val = i.toString().padStart(2, '0');
@@ -929,7 +942,7 @@
                         <tr><td style="padding: 2px 5px 2px 25px;">Jabatan</td><td>: ${d.jabatan}</td></tr>
                     </table>
                     
-                    <div class="content">
+                    <div style="text-align: justify; margin-bottom: 10px; text-indent: 0px;">
                         Menerangkan dengan sesungguhnya bahwa saya telah melaksanakan pekerjaan lembur pada Hari ${hariText}, 
                         Tanggal ${dateStr} dari Pukul ${d.jamMulai}:${d.menitMulai} - ${d.jamSelesai}:${d.menitSelesai} WIB (${durationText}), dengan uraian pekerjaan sebagai berikut:
                     </div>
@@ -1110,7 +1123,7 @@
                         <tr><td style="padding: 2px 5px 2px 25px;">Jabatan</td><td>: ${d.jabatan || '-'}</td></tr>
                     </table>
                     
-                    <div class="content">
+                    <div style="text-align: justify; margin-bottom: 10px; text-indent: 0px;">
                         Menerangkan dengan sesungguhnya bahwa saya telah melaksanakan pekerjaan lembur pada Hari ${hariText}, 
                         Tanggal ${dateStr} dari Pukul ${d.jamMulai || '00'}:${d.menitMulai || '00'} - ${d.jamSelesai || '00'}:${d.menitSelesai || '00'} WIB (${durationText}), dengan uraian pekerjaan sebagai berikut:
                     </div>
@@ -1145,36 +1158,30 @@
         }
         function closeViewOvertimeModal() { document.getElementById('viewOvertimeModal').style.display = 'none'; }
 
-        // PERBAIKAN: Langsung mengisi form tanpa refresh
-function editOvertimeData(index) {
-    const history = JSON.parse(localStorage.getItem(LS_OVERTIME_HISTORY_KEY) || '[]');
-    const data = history[index];
-    
-    // Hapus data dari history
-    history.splice(index, 1);
-    localStorage.setItem(LS_OVERTIME_HISTORY_KEY, JSON.stringify(history));
-    
-    // SIMPAN DATA KE DRAFT terlebih dahulu agar loadOvertimeDraft() memuatnya
-    const draftData = {
-        nama: data.nama,
-        kota: data.kota || 'Pekanbaru',
-        tanggal: data.tanggal,
-        tanggalCetak: data.tanggalCetak || new Date().toISOString().split('T')[0],
-        uraian: data.uraian,
-        jamMulai: data.jamMulai,
-        menitMulai: data.menitMulai,
-        jamSelesai: data.jamSelesai,
-        menitSelesai: data.menitSelesai,
-        kepalaNama: data.kepalaNama || 'Guswandi, SST'
-    };
-    localStorage.setItem(LS_OVERTIME_KEY, JSON.stringify(draftData));
-    
-    // Pindah halaman - loadOvertimeDraft() akan memuat data yang baru disimpan
-    showPage('overtime');
-    
-    // Update tabel history
-    renderOvertimeHistoryTable();
-}
+        function editOvertimeData(index) {
+            const history = JSON.parse(localStorage.getItem(LS_OVERTIME_HISTORY_KEY) || '[]');
+            const data = history[index];
+            
+            history.splice(index, 1);
+            localStorage.setItem(LS_OVERTIME_HISTORY_KEY, JSON.stringify(history));
+            
+            const draftData = {
+                nama: data.nama,
+                kota: data.kota || 'Pekanbaru',
+                tanggal: data.tanggal,
+                tanggalCetak: data.tanggalCetak || new Date().toISOString().split('T')[0],
+                uraian: data.uraian,
+                jamMulai: data.jamMulai,
+                menitMulai: data.menitMulai,
+                jamSelesai: data.jamSelesai,
+                menitSelesai: data.menitSelesai,
+                kepalaNama: data.kepalaNama || 'Guswandi, SST'
+            };
+            localStorage.setItem(LS_OVERTIME_KEY, JSON.stringify(draftData));
+            
+            showPage('overtime');
+            renderOvertimeHistoryTable();
+        }
 
         function printOvertimeData(index) {
             const history = JSON.parse(localStorage.getItem(LS_OVERTIME_HISTORY_KEY) || '[]');
